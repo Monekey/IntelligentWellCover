@@ -1,0 +1,293 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+.AMap-content{
+    width: 100%;
+    height: 100%;
+}
+
+.sensor-list .row .col:nth-child(1){
+    text-align: right;
+}
+
+.device-refresh-time{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background: transparent;
+    font-size: 12px;
+    z-index: 200;
+}
+.sensor-operate-bar{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: #FFF;
+    font-size: 12px;
+    z-index: 200;
+}
+.sensor-operate-bar .col{
+    text-align: center;
+    font-size: 30px;
+}
+.sensor-operate-bar .iconfont{
+    font-size: 30px;
+}
+.sensor-operate-bar .sensor-operate-up{
+    background: green;
+}
+.sensor-operate-bar .sensor-operate-down{
+    background: red;
+}
+.sensor-list-wrapped{
+    height: 90px;
+}
+
+.nav-active{
+    color: #c90000 !important;
+}
+
+.modal-view{
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
+    transition: 0.15s;
+    opacity: 0;
+}
+.modal-view.modal-view-show{
+    bottom:0;
+    transition: 0.5s;
+    opacity: 0.95;
+}
+
+.map-icon-location{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 1000;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border-radius: 40px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: -1px 3px 10px 1px #444444;
+}
+.map-icon-location > i{
+    font-size: 28px;
+    color: #c90000;
+    /* text-shadow: 0px 0px 20px #000; */
+    /* position: absolute; */
+    line-height: 32px;
+    margin: 0 auto;
+    display: block;
+}
+.map-icon-location svg{
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.map-icon-bar{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 1000;
+    max-width: 100px;
+    padding: 0px 0px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    vertical-align: middle;
+    box-shadow: -1px 3px 10px 1px #ababab;
+}
+.map-icon-bar > i{
+    display: inline-block;
+    font-size: 22px;
+    color: #1a2b39;
+    line-height: 30px;
+    margin: 0 10px;
+    transition: 1s;
+    /* font-weight: bold; */
+}
+
+.map-icon-bar > i.alarm-normal{
+    color: #cccccc;
+}
+.map-icon-bar > i.alarm-color{
+    animation: alarm 2s infinite linear;
+    -moz-animation: alarm 2s infinite linear;
+    -webkit-animation: alarm 2s infinite cubic-bezier(0.22, 0.61, 0.36, 1);
+    -o-animation: alarm 2s infinite linear;
+}
+
+@keyframes alarm{
+    0% {color: #cccccc}
+    50% {color: red;
+        text-shadow: 1px 1px 2px #ffa0a0;}
+    100%{color: #cccccc}
+}
+@keyframes rotation{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(720deg);}
+}
+
+.Rotation{
+    -webkit-transform: rotate(360deg);
+    animation: rotation 3s linear;
+    -moz-animation: rotation 3s linear;
+    -webkit-animation: rotation 3s linear;
+    -o-animation: rotation 3s linear;
+}
+.device-list .button-icon .iconfont{
+    color: #c90000;
+    padding-top: 10px;
+}
+a{
+    color: #c90000;
+}
+
+.row a{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sensor-list .offline{
+
+}
+.sensor-list .offline .row{
+    color: #bf7575;
+}
+.sensor-list img{
+    width: 50px;
+    height: 50px;
+}
+.sensor-list .offline-text{
+    color: red;
+}
+.sensor-list .online-text{
+    color: green;
+}
+
+.device-list .device-list-location{
+    position: absolute;
+    right: 26px;
+    top: 12px;
+}
+.device-list .device-list-location > span{
+    position: absolute;
+    left: -10px;
+    bottom: -10px;
+    display: inline-block;
+    width: 66px;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+.device-list .device-no{
+    font-size: 0.85em;
+}
+
+.font-bold{
+    font-weight: bold;
+}
+
+.sensor-list .sensor-data{
+    line-height:  3em;
+}
+
+.operate-btn{
+    position: fixed;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    bottom: 20px;
+    left: 0px;
+    z-index: 99;
+    width: 60px;
+    text-align: right;
+    height: 40px;
+    transition: 1s;
+    background: rgb(145, 63, 63);
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.49);
+}
+.operate-btn i{
+    font-size:30px;
+    line-height: 40px;
+    padding-right: 6px;
+    color: #fff;
+}
+
+.full-s{
+    background: rgba(0, 0, 0, 0.77);
+    left: -25%;
+    bottom: -25%;
+    height: 150%;
+    width: 150%;
+}
+
+.operate-panel{
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 30px;
+}
+
+.slide-in-right {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(100%);
+}
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+.slide-in-left {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+.slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+.slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+.version-info{
+    position: fixed;
+    top: 0;
+    right: 2px;
+    font-size: 0.7em;
+    color: #000;
+}

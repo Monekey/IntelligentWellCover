@@ -1,0 +1,4 @@
+#Fri May 11 19:08:54 CST 2018
+base.0=E\:\\projects\\andriod1\\app\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+renamed.0=classes.dex
+file.0=E\:\\projects\\andriod1\\app\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

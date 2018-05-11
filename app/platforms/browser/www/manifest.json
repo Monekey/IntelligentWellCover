@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "旭东智慧管廊",
+  "short_name": "旭东智慧管廊",
+  "version": "io.cordova.hellocordova",
+  "description": "智能井盖",
+  "author": "CuiQM",
+  "icons": [],
+  "start_url": "index.html"
+}

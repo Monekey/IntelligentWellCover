@@ -1,0 +1,24 @@
+<div>
+    <ul class="list">
+        <li class="item">
+            当前用户：{{UserService.GetUser().userName}}
+        </li>
+        <!--<a class="item item-icon-left">-->
+            <!--<i class="icon ion-email"></i>-->
+            <!--修改密码-->
+        <!--</a>-->
+        <a class="item item-icon-left" ng-click="UserService.Logout()">
+            <i class="icon ion-ios-unlocked-outline "></i>
+            注销
+        </a>
+        <a class="item item-icon-left" ui-sref="app.main.setting">
+            <i class="icon iconfont icon-shezhi"></i>
+            设置
+        </a>
+        <a class="item item-icon-left" ng-click="CheckUpdate()">
+            <i class="icon iconfont icon-shebeiguanli"></i>
+            <div style="float: left">检查更新</div>
+            <div style="float: right">{{CurrentVersion}}</div>
+        </a>
+    </ul>
+</div>

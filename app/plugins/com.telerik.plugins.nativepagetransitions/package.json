@@ -1,0 +1,104 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "com.telerik.plugins.nativepagetransitions",
+        "scope": null,
+        "escapedName": "com.telerik.plugins.nativepagetransitions",
+        "name": "com.telerik.plugins.nativepagetransitions",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "E:\\projects\\andriod1\\app"
+    ]
+  ],
+  "_from": "com.telerik.plugins.nativepagetransitions@latest",
+  "_id": "com.telerik.plugins.nativepagetransitions@0.6.5",
+  "_inCache": true,
+  "_location": "/com.telerik.plugins.nativepagetransitions",
+  "_nodeVersion": "4.2.2",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/com.telerik.plugins.nativepagetransitions-0.6.5.tgz_1464118644176_0.7883392283692956"
+  },
+  "_npmUser": {
+    "name": "eddyverbruggen",
+    "email": "eddyverbruggen@gmail.com"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "com.telerik.plugins.nativepagetransitions",
+    "scope": null,
+    "escapedName": "com.telerik.plugins.nativepagetransitions",
+    "name": "com.telerik.plugins.nativepagetransitions",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/com.telerik.plugins.nativepagetransitions/-/com.telerik.plugins.nativepagetransitions-0.6.5.tgz",
+  "_shasum": "3a7afdbdd396ff57c3516f08f2488945e5485b1f",
+  "_shrinkwrap": null,
+  "_spec": "com.telerik.plugins.nativepagetransitions",
+  "_where": "E:\\projects\\andriod1\\app",
+  "author": {
+    "name": "Telerik / Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com",
+    "url": "https://github.com/EddyVerbruggen"
+  },
+  "cordova_name": "Native Page Transitions",
+  "dependencies": {},
+  "description": "Slide out the current page to reveal the next one. By a native transitions.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "3a7afdbdd396ff57c3516f08f2488945e5485b1f",
+    "tarball": "https://registry.npmjs.org/com.telerik.plugins.nativepagetransitions/-/com.telerik.plugins.nativepagetransitions-0.6.5.tgz"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "8661cf2570e76d5950479bd020af944571d04945",
+  "issue": "https://github.com/Telerik-Verified-Plugins/WKWebView/issues",
+  "keywords": [
+    "Native transitions",
+    "Native page transitions",
+    "Slide",
+    "Flip",
+    "Drawer",
+    "Menu",
+    "Curl",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "eddyverbruggen",
+      "email": "eddyverbruggen@gmail.com"
+    }
+  ],
+  "name": "com.telerik.plugins.nativepagetransitions",
+  "optionalDependencies": {},
+  "platforms": [
+    "ios",
+    "android",
+    "wp8",
+    "windows"
+  ],
+  "readme": "ERROR: No README data found!",
+  "repo": "https://github.com/Telerik-Verified-Plugins/WKWebView.git",
+  "scripts": {},
+  "version": "0.6.5"
+}

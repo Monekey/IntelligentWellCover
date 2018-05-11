@@ -1,0 +1,79 @@
+<!--<header class="SiteHeader js-siteHeader js-headerAccountMenu login">-->
+    <!--<div class="SiteHeader_bar">-->
+        <!--<div class="container">-->
+            <!--<a class="SiteHeader_signup">登录</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</header>-->
+<main>
+    <div class="version-info">{{CurrentVersion}}</div>
+    <div class="Container LoginContainer login">
+        <!--<h1 class="PageTitle">登录</h1>-->
+        <section class="login-logo-content">
+            <img src="img/logo1.png" class="login-logo">
+            <div class="login-logo-des">智慧井盖，一个城市的名片</div>
+        </section>
+        <section class="LoginForm">
+
+            <form name="loginForm" class="LoginForm_body" novalidate ng-init="seePassword=false">
+                <div class="LoginForm_formGroup formGroup">
+                    <!--<label class="LoginForm_label formLabel"><span>用户名</span></label>-->
+                    <span class="login-input">
+                        <input type="text" name="user_id" placeholder="请输入用户名" ng-model="user.id" required autocapitalize="off" autocorrect="off">
+                        <i class="iconfont icon-jiesuo input-icon-left"></i>
+                        <i class="iconfont icon-qingchu input-icon-right" ng-show="user.id" ng-click="user.id=''"></i>
+                    </span>
+                </div>
+                <div class="LoginForm_formGroup formGroup">
+                    <!--<label class="LoginForm_label formLabel"><span>密码</span></label>-->
+                    <span class="login-input">
+                        <input type="{{seePassword?'text':'password'}}" name="user_password" ng-model="user.password" required placeholder="请输入密码" value="">
+                        <i class="iconfont icon-geren input-icon-left"></i>
+                        <i class="iconfont input-icon-right" ng-class="{'icon-yanjing-zheng':seePassword,'icon-yanjing-bi':!seePassword}" ng-click="seePassword=!seePassword"></i>
+                    </span>
+                </div>
+                <div class="LoginForm_formGroup formGroup" style="margin-top: 10px;">
+                    <!--<label class="LoginForm_label formLabel"><span>验证码</span></label>-->
+                    <div class="row">
+                        <div class="col">
+                            <input type="number" name="valicode" ng-model="valicode" required placeholder="输入验证码" maxlength="4" value="">
+                        </div>
+                        <div class="col-40" style="">
+                            <div id="valicode" class=""></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="LoginForm_forgotPassword">
+                    <a ><i class="icon-arrowRightLightgray"></i>
+                        忘记密码
+                    </a>
+                </p>
+                <div class="formGroup formGroup-submit">
+                    <!-- add reCAPTCHA attr -->
+                    <button type="submit" class="btn btn-primary btn-large formInput-submit" ng-click="login()" ng-disabled="loginForm.$invalid || logining.active()">
+                        {{logining.active()?'正在登入':'登入'}}
+                    </button>
+                </div>
+            </form>
+        </section>
+        <section class="SnsLogin" ng-hide="true">
+            <p class="SnsLogin_lead">使用其他账号登录</p>
+            <div class="SnsButtons">
+                <ul class="SnsButtons_list">
+                    <li class="SnsButtons_button SnsButtons_button-list SnsButtons_buttonFacebook">
+
+                    </li>
+                </ul>
+                <!-- /.SnsButtons --></div>
+        </section>
+
+
+        <div class="RegisterArea" ng-hide="true">
+
+            <p class="RegisterArea_lead">沒有账号？</p>
+            <p class="RegisterArea_link"><a class="btn btn-primaryInverse btn-large">注册新账号</a></p>
+
+            <!-- /.RegisterArea --></div>
+
+    </div>
+</main>

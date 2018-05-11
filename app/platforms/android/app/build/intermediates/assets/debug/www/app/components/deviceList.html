@@ -1,0 +1,27 @@
+    <!--<div ng-repeat="device in dList">-->
+    <!--<a ng-click="goDeviceDetail(device)" ng-bind="device.deviceName"></a>-->
+    <!--<div ng-bind="device.deviceNo"></div>-->
+    <!--</div>-->
+    <ion-scroll>
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <div class="list device-list">
+        <div class="item item-button-right" ng-repeat="device in dList | orderBy:'distance'" ng-click="goDeviceDetail(device)">
+            <div>
+                <div class="row">
+                    <a ng-bind="::device.deviceName"></a>
+                </div>
+                <div class="row">
+                    <span class="device-no"  ng-bind="::device.deviceNo"></span>
+                </div>
+            </div>
+            <div class="device-list-location">
+                <button class="button button-icon" ng-click="$event.preventDefault();panTo(device)">
+                    <i class="iconfont icon icon-ditu"></i>
+                </button>
+                <span>{{device.distance|distanceNum}}</span>
+            </div>
+        </div>
+    </div>
+    </ion-scroll>
+

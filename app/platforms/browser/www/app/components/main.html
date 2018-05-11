@@ -1,0 +1,48 @@
+<div class="main-content">
+<!--<ion-side-menus>-->
+    <!-- 中间内容 -->
+    <!--<ion-side-menu-content>-->
+        <!--<div class="bar bar-header">-->
+            <!--&lt;!&ndash;<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>&ndash;&gt;-->
+            <!--<a class="title">设备列表</a>-->
+            <!--<a class="button button-icon icon ion-ios-location" ng-click="panToLocation()"></a>-->
+        <!--</div>-->
+<!--<ion-tabs class="tabs-bottom"></ion-tabs>-->
+<ion-content>
+    <a-map></a-map>
+    <div class="modal-view" ng-class="{'modal-view-show': !state.is('app.main')}">
+        <ion-header-bar align-title="center" class="" ng-hide="$root.Page.$HideTitle">
+            <div class="buttons">
+                <button class="button button-icon iconfont icon-back" ng-click="GOBACK()"></button>
+            </div>
+            <h1 class="title">{{$root.Page.$Title}}</h1>
+            <div class="buttons">
+                <button ng-hide="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-close" ui-sref="app.main"></button>
+                <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ui-sref="app.main"></button>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <ui-view></ui-view>
+        </ion-content>
+    </div>
+</ion-content>
+<ion-footer-bar align-title="center">
+    <div class="buttons">
+        <a ui-sref="app.main.deviceList"  ui-sref-active="nav-active" class="button button-icon iconfont icon-listview"></a>
+    </div>
+    <div class="title">
+        <button ui-sref="app.main" style="line-height: 36px;" ng-class="{'nav-active icon-dangdifill': state.is('app.main'),'icon-dangdi': !state.is('app.main')}" class="button-icon iconfont"></button>
+    </div>
+    <div class="buttons">
+        <a ui-sref="app.main.user" ui-sref-active="nav-active" class="button button-icon iconfont icon-geren"></a>
+    </div>
+</ion-footer-bar>
+
+    <!--</ion-side-menu-content>-->
+
+    <!-- 左侧菜单 -->
+    <!--<ion-side-menu side="left">-->
+    <!--</ion-side-menu>-->
+<!--</ion-side-menus>-->
+
+</div>

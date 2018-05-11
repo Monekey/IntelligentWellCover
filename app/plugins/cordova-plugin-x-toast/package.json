@@ -1,0 +1,108 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+        "spec": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+          "sshUrl": "git+ssh://git@github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+          "httpsUrl": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+          "gitUrl": "git://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+          "shortcut": "github:EddyVerbruggen/Toast-PhoneGap-Plugin",
+          "directUrl": "https://raw.githubusercontent.com/EddyVerbruggen/Toast-PhoneGap-Plugin/master/package.json"
+        }
+      },
+      "E:\\projects\\andriod1\\app"
+    ]
+  ],
+  "_from": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+  "_id": "cordova-plugin-x-toast@2.6.2",
+  "_inCache": true,
+  "_location": "/cordova-plugin-x-toast",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+    "spec": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "sshUrl": "git+ssh://git@github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "httpsUrl": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "gitUrl": "git://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "shortcut": "github:EddyVerbruggen/Toast-PhoneGap-Plugin",
+      "directUrl": "https://raw.githubusercontent.com/EddyVerbruggen/Toast-PhoneGap-Plugin/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git#791beb0bc47fb53611d7e732f26000d0adacfe2e",
+  "_shasum": "5fef579a3e3695198ef9200428ba617d78294d01",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+  "_where": "E:\\projects\\andriod1\\app",
+  "author": {
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com",
+    "url": "https://github.com/EddyVerbruggen"
+  },
+  "bugs": {
+    "url": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-x-toast",
+    "platforms": [
+      "ios",
+      "android",
+      "wp8",
+      "windows",
+      "blackberry10"
+    ]
+  },
+  "dependencies": {},
+  "description": "This plugin allows you to show a Toast. A Toast is a little non intrusive buttonless popup which automatically disappears.",
+  "devDependencies": {},
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "791beb0bc47fb53611d7e732f26000d0adacfe2e",
+  "homepage": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin#readme",
+  "keywords": [
+    "Toast",
+    "Notification",
+    "Message",
+    "Alert",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-wp8",
+    "cordova-windows",
+    "cordova-blackberry10"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-x-toast",
+  "optionalDependencies": {},
+  "readme": "# PhoneGap Toast plugin\r\n\r\nfor Android, iOS, WP8, Windows and BlackBerry by [Eddy Verbruggen](http://www.x-services.nl/phonegap-toast-plugin/796)\r\n\r\n[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=eddyverbruggen%40gmail%2ecom&lc=US&item_name=cordova%2dplugin%2dtoast&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted)\r\nIf you like this plugin and want to say thanks please send a PR or donation. Both are equally appreciated!\r\n\r\n\r\n<table width=\"100%\">\r\n    <tr>\r\n        <td width=\"100\"><a href=\"http://plugins.telerik.com/plugin/toast\"><img src=\"http://www.x-services.nl/github-images/telerik-verified-plugins-marketplace.png\" width=\"97px\" height=\"71px\" alt=\"Marketplace logo\"/></a></td>\r\n        <td>For a quick demo app and easy code samples, check out the plugin page at the Verified Plugins Marketplace: http://plugins.telerik.com/plugin/toast</td>\r\n    </tr>\r\n</table>\r\n\r\n## 0. Index\r\n\r\n1. [Description](#1-description)\r\n2. [Screenshots](#2-screenshots)\r\n3. [Installation](#3-installation)\r\n  3. [Automatically (CLI / Plugman)](#automatically-cli--plugman)\r\n  3. [Manually](#manually)\r\n  3. [PhoneGap Build](#phonegap-build)\r\n4. [Usage](#4-usage)\r\n  4. [Styling](#styling)\r\n5. [Credits](#5-credits)\r\n6. [Changelog](#6-changelog)\r\n\r\n## 1. Description\r\n\r\nThis plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8.\r\nIt's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.\r\n* You can choose where to show the Toast: at the top, center or bottom of the screen.\r\n* You can choose two durations: short (approx. 2 seconds), or long (approx. 5 seconds), after which the Toast automatically disappears.\r\n\r\nExample usages:\r\n* \"There were validation errors\"\r\n* \"Account created successfully\"\r\n* \"The record was deleted\"\r\n* \"Login successful\"\r\n* \"You are now logged out\"\r\n* \"Connection failure, please try again later\"\r\n* \"Created Order #00287\r\n\r\n## 2. Screenshots\r\n\r\niOS\r\n\r\n![ScreenShot](screenshots/screenshot-ios-toast.png)\r\n\r\nA few styling options\r\n\r\n![ScreenShot](screenshots/styling-green.png)\r\n\r\n![ScreenShot](screenshots/styling-red.png)\r\n\r\n\r\nAndroid\r\n\r\n![ScreenShot](screenshots/screenshot-android-toast.png)\r\n\r\n\r\nWindows Phone 8\r\n\r\n![ScreenShot](screenshots/screenshot-wp8.jpg)\r\n\r\n## 3. Installation\r\n\r\n### Automatically (CLI / Plugman)\r\nToast is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman), compatible with [PhoneGap 3.0 CLI](http://docs.phonegap.com/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface_add_features), here's how it works with the CLI (backup your project first!):\r\n\r\nUsing the Cordova CLI and the [Cordova Plugin Registry](http://plugins.cordova.io)\r\n```\r\n$ cordova plugin add cordova-plugin-x-toast\r\n$ cordova prepare\r\n```\r\n\r\nOr using the phonegap CLI\r\n```\r\n$ phonegap local plugin add cordova-plugin-x-toast\r\n```\r\n\r\nToast.js is brought in automatically. There is no need to change or add anything in your html.\r\n\r\n### Manually\r\nYou'd better use the CLI, but here goes:\r\n\r\n1\\. Add the following xml to your `config.xml` in the root directory of your `www` folder:\r\n```xml\r\n<!-- for iOS -->\r\n<feature name=\"Toast\">\r\n  <param name=\"ios-package\" value=\"Toast\" />\r\n</feature>\r\n```\r\n```xml\r\n<!-- for Android -->\r\n<feature name=\"Toast\">\r\n  <param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" />\r\n</feature>\r\n```\r\n```xml\r\n<!-- for WP8 -->\r\n<feature name=\"Toast\">\r\n  <param name=\"wp-package\" value=\"Toast\"/>\r\n</feature>\r\n```\r\n\r\nFor iOS, you'll need to add the `QuartzCore.framework` to your project (it's for automatically removing the Toast after a few seconds).\r\nClick your project, Build Phases, Link Binary With Libraries, search for and add `QuartzCore.framework`.\r\n\r\n2\\. Grab a copy of Toast.js, add it to your project and reference it in `index.html`:\r\n```html\r\n<script type=\"text/javascript\" src=\"js/Toast.js\"></script>\r\n```\r\n\r\n3\\. Download the source files and copy them to your project.\r\n\r\niOS: Copy the two `.h` and two `.m` files to `platforms/ios/<ProjectName>/Plugins`\r\n\r\nAndroid: Copy `Toast.java` to `platforms/android/src/nl/xservices/plugins` (create the folders)\r\n\r\nWP8: Copy `Toast.cs` to `platforms/wp8/Plugins/nl.x-services.plugins.toast` (create the folders)\r\n\r\n### PhoneGap Build\r\n\r\nToast works with PhoneGap build too, but only with PhoneGap 3.0 and up.\r\n\r\nJust add the following xml to your `config.xml` to always use the latest version of this plugin:\r\n```xml\r\n<gap:plugin name=\"cordova-plugin-x-toast\" source=\"npm\" />\r\n```\r\n\r\nToast.js is brought in automatically. There is no need to change or add anything in your html.\r\n\r\n## 4. Usage\r\n\r\n### Showing a Toast\r\nYou have two choices to make when showing a Toast: where to show it and for how long.\r\n* show(message, duration, position)\r\n* duration: 'short', 'long', '3000', 900 (the latter are milliseconds)\r\n* position: 'top', 'center', 'bottom'\r\n\r\nYou can also use any of these convenience methods:\r\n* showShortTop(message)\r\n* showShortCenter(message)\r\n* showShortBottom(message)\r\n* showLongTop(message)\r\n* showLongCenter(message)\r\n* showLongBottom(message)\r\n\r\nYou can copy-paste these lines of code for a quick test:\r\n```html\r\n<button onclick=\"window.plugins.toast.showShortTop('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})\">Toast showShortTop</button>\r\n<button onclick=\"window.plugins.toast.showLongBottom('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})\">Toast showLongBottom</button>\r\n<button onclick=\"window.plugins.toast.show('Hello there!', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})\">Toast show long center</button>\r\n```\r\n\r\n#### Tweaking the vertical position\r\nSince 2.1.0 you can add pixels to move the toast up or down.\r\nNote that `showWithOptions` can be used instead of the functions above, but it's not useful unless you want to pass `addPixelsY`.\r\n```js\r\nfunction showBottom() {\r\n  window.plugins.toast.showWithOptions(\r\n    {\r\n      message: \"hey there\",\r\n      duration: \"short\", // which is 2000 ms. \"long\" is 4000. Or specify the nr of ms yourself.\r\n      position: \"bottom\",\r\n      addPixelsY: -40  // added a negative value to move it up a bit (default 0)\r\n    },\r\n    onSuccess, // optional\r\n    onError    // optional\r\n  );\r\n}\r\n```\r\n\r\n### Hiding a Toast\r\nIn case you want to hide a Toast manually, call this:\r\n```js\r\nfunction hide() {\r\n  // this function takes an optional success callback, but you can do without just as well\r\n  window.plugins.toast.hide();\r\n}\r\n```\r\n\r\nWhen the toast gets hidden, your success callback will be called (in case you have defined one) with the `event` property equals to `hide` (more details about the callback in the next section).\r\n```js\r\n\r\n  window.plugins.toast.showWithOptions({\r\n      message: 'My message',\r\n      // More config here...\r\n  },\r\n      //Success callback\r\n      function(args) {\r\n          console.log(args.event);\r\n          //This will print 'hide'\r\n      }, \r\n      function(error) {\r\n          console.error('toast error: ', error);\r\n      }\r\n  );\r\n```\r\n\r\n### Receiving a callback when a Toast is tapped\r\nOn iOS and Android the success handler of your `show` function will be notified (again) when the toast was tapped.\r\n\r\nSo the first time the success handler fires is when the toast is shown, and in case the user taps the toast it will be\r\ncalled again. You can distinguish between those events of course:\r\n\r\n```js\r\n  window.plugins.toast.showWithOptions(\r\n    {\r\n      message: \"hey there\",\r\n      duration: 1500, // ms\r\n      position: \"bottom\",\r\n      addPixelsY: -40,  // (optional) added a negative value to move it up a bit (default 0)\r\n      data: {'foo':'bar'} // (optional) pass in a JSON object here (it will be sent back in the success callback below)\r\n    },\r\n    // implement the success callback\r\n    function(result) {\r\n      if (result && result.event) {\r\n        console.log(\"The toast was tapped or got hidden, see the value of result.event\");\r\n        console.log(\"Event: \" + result.event); // \"touch\" when the toast was touched by the user or \"hide\" when the toast geot hidden\r\n        console.log(\"Message: \" + result.message); // will be equal to the message you passed in\r\n        console.log(\"data.foo: \" + result.data.foo); // .. retrieve passed in data here\r\n        \r\n        if (result.event === 'hide') {\r\n          console.log(\"The toast has been shown\");\r\n        }\r\n      }\r\n    }\r\n  );\r\n```\r\n\r\nThe success callback is useful when your toast is binded to a notification id in your backend and you have to mark it as `read` when the toast is done, or to update the notifications counter for iOS. The usage of this will be defined by your application logic. Use the `result.data` object to support your specific logic.\r\n\r\n### Styling\r\nSince version 2.4.0 you can pass an optional `styling` object to the plugin.\r\nThe defaults make sure the Toast looks the same as when you would not pass in the `styling` object at all.\r\n\r\nNote that on WP this object is currently ignored.\r\n\r\n```js\r\n  window.plugins.toast.showWithOptions({\r\n    message: \"hey there\",\r\n    duration: \"short\", // 2000 ms\r\n    position: \"bottom\",\r\n    styling: {\r\n      opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8\r\n      backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333\r\n      textColor: '#FFFF00', // Ditto. Default #FFFFFF\r\n      textSize: 20.5, // Default is approx. 13.\r\n      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100\r\n      horizontalPadding: 20, // iOS default 16, Android default 50\r\n      verticalPadding: 16 // iOS default 12, Android default 30\r\n    }\r\n  });\r\n```\r\n\r\nTip: if you need to pass different values for iOS and Android you can use fi. the device plugin\r\nto determine the platform and pass `opacity: isAndroid() ? 0.7 : 0.9`.\r\n\r\n### WP8 quirks\r\nThe WP8 implementation needs a little more work, but it's perfectly useable when you keep this in mind:\r\n* You can't show two Toasts simultaneously.\r\n* Wait until the first Toast is hidden before the second is shown, otherwise the second one will be hidden quickly.\r\n* The positioning of the bottom-aligned Toast is not perfect, but keep it down to 1 or 2 lines of text and you're fine.\r\n\r\n\r\n## 5. CREDITS\r\n\r\nThis plugin was enhanced for Plugman / PhoneGap Build by [Eddy Verbruggen](http://www.x-services.nl).\r\nThe Android code was entirely created by me.\r\nFor iOS most credits go to this excellent [Toast for iOS project by Charles Scalesse] (https://github.com/scalessec/Toast).\r\n\r\n## 6. CHANGELOG\r\n- 2.6.2: [iOS view hierarchy fix.](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin/pull/112)\r\n- 2.6.0: Windows support!\r\n- 2.5.2: Multi-line wrapping Toasts are now center aligned.\r\n- 2.5.1: You can now specify the `textSize` used in the font for iOS and Android.\r\n- 2.5.0: By popular demand: Specify the duration of the Toast on iOS and Android. Pass in `short` (2000ms), `long` (4000ms), or any nr of milliseconds: `900`.\r\n- 2.4.2: You can now also set the Toast `opacity` for iOS.\r\n- 2.4.1: As an addition to 2.4.0, [Sino](https://github.com/SinoBoeckmann) added the option to change the text color!\r\n- 2.4.0: You can now style the Toast with a number of properties. See\r\n- 2.3.2: The click event introduced with 2.3.0 did not work with Android 5+.\r\n- 2.3.0: The plugin will now report back to JS if Toasts were tapped by the user.\r\n- 2.0.1: iOS messages are hidden when another one is shown. [Thanks Richie Min!](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin/pull/13)\r\n- 2.0: WP8 support\r\n- 1.0: initial version supporting Android and iOS\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git"
+  },
+  "version": "2.6.2"
+}
