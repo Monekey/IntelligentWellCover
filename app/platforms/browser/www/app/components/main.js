@@ -4,6 +4,9 @@
 angular.module('app')
     .controller('mainCtrl', function($scope, DeviceService, $state, EventBus, UserService, $rootScope){
         $scope.state = $state;
+        $scope.openSettingModal = function(){
+            EventBus.Publish('OpenSettingModal');
+        }
         // $scope.Router = Router;
         // $scope.ModalViewShow = false;
         // $scope.PopupModalViewPage = function(ModalViewContent, params){

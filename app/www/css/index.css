@@ -36,10 +36,10 @@
 }
 .sensor-operate-bar{
     position: fixed;
-    bottom: 0px;
+    bottom: 30px;
     left: 0px;
     width: 100%;
-    background: #FFF;
+    background: transparent;
     font-size: 12px;
     z-index: 200;
 }
@@ -48,13 +48,29 @@
     font-size: 30px;
 }
 .sensor-operate-bar .iconfont{
-    font-size: 30px;
+    font-size: 60px;
+    line-height: 60px;
+    margin-top: 4px;
+    margin-left: -1px;
 }
 .sensor-operate-bar .sensor-operate-up{
-    background: green;
+    background: rgba(255, 255, 255, 0.88);
+    /* box-shadow: -2px 3px 1px 1px #5b5b5b; */
+    float: left;
+    margin-left: 70px;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    text-align: center;
 }
 .sensor-operate-bar .sensor-operate-down{
-    background: red;
+    background: rgba(255, 255, 255, 0.88);
+    float: right;
+    margin-right: 70px;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    text-align: center;
 }
 .sensor-list-wrapped{
     height: 90px;
@@ -212,7 +228,7 @@ a{
     font-weight: bold;
 }
 
-.sensor-list .sensor-data{
+.sensor-data{
     line-height:  3em;
 }
 
@@ -290,4 +306,41 @@ a{
     right: 2px;
     font-size: 0.7em;
     color: #000;
+}
+.device-onLine .device-is-line{
+    color: green;
+}
+.action-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px 3px;
+}
+.action-list>div{
+    width: 25%;
+    text-align: center;
+}
+.action-list>div i{
+    font-size: 40px;
+}
+.sensor-on{
+    color: greenyellow;
+}
+.icon-kaiguankai{
+    color: greenyellow;
+}
+.sensor-data i{
+    font-size: 55px
+}
+.setting-list .row{
+    padding: 0;
+}
+.setting-list input{
+    border: 1px solid #000;
+    height: 30px !important;
+    padding: 0 !important;
+}
+.setting-page input{
+    width: 80px;
+    padding-left: 5px;
 }

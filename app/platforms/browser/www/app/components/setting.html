@@ -1,12 +1,12 @@
 <div>
-    <ul class="list">
+    <ul class="list setting-page">
         <a class="item item-icon-left">
-            <i class="icon ion-ios-unlocked-outline "></i>
-
+            最大可操作距离：
+            <input ng-model="config.VisibleMeter" ng-blur="checkEmpty('VisibleMeter')">米
         </a>
-        <a class="item item-icon-left">
-            <i class="icon iconfont icon-shezhi"></i>
-            设置
+
+        <a class="item" ng-click="OpenMoreSetting()">
+            更多设置...
         </a>
     </ul>
 </div>

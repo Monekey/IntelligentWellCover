@@ -18,7 +18,7 @@
             <h1 class="title">{{$root.Page.$Title}}</h1>
             <div class="buttons">
                 <button ng-hide="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-close" ui-sref="app.main"></button>
-                <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ui-sref="app.main"></button>
+                <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ng-click="openSettingModal();"></button>
             </div>
         </ion-header-bar>
         <ion-content>

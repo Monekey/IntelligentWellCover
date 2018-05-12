@@ -6,10 +6,11 @@
 
     <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <div class="list device-list">
-        <div class="item item-button-right" ng-repeat="device in dList | orderBy:'distance'" ng-click="goDeviceDetail(device)">
-            <div>
+        <div class="item item-button-right" ng-class="{'device-onLine': device.isLine}" ng-repeat="device in dList | orderBy:'distance'">
+            <div ng-click="goDeviceDetail(device)">
                 <div class="row">
                     <a ng-bind="::device.deviceName"></a>
+                    <i class="iconfont icon-zaixian device-is-line" ></i>
                 </div>
                 <div class="row">
                     <span class="device-no"  ng-bind="::device.deviceNo"></span>

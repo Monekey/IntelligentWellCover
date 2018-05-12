@@ -2,7 +2,8 @@
  * Created by 崔启蒙 on 2018/4/21.
  */
 angular.module('app')
-    .controller('deviceDetail', function($scope,$rootScope, $state, DeviceService, Widget, $interval, EventBus, OperateSensorNameList, $q, $ionicModal, $ionicPlatform){
+    .controller('deviceDetail', function($scope,$rootScope, $state, DeviceService, Widget, $interval, EventBus, OperateSensorNameList,
+                                         $q, $ionicModal, $ionicPlatform, OperateSensorConfig, $cordovaToast){
         console.log($state.params);
         $scope.OperateIds = {};
         $scope.ControlCode = '';
@@ -21,10 +22,31 @@ angular.module('app')
                     $scope.sensorLastDataList = data.sensorLastDataList
                 })
         };
+
         function getCurrentDeviceData(DeviceList) {
+
             $scope.Device = DeviceList.filter(function(item){
                 return item.deviceNo === $state.params.deviceNo;
             })[0];
+            $scope.StateList = [];
+            $scope.ActionList = [];
+            $scope.SettingList = [];
+            angular.forEach($scope.Device.sensorList, function(sensor){
+                if(OperateSensorConfig[sensor.sensorName]){
+                    var _SConfig = OperateSensorConfig[sensor.sensorName];
+                    _SConfig.sensor = sensor;
+                    switch (_SConfig.Type){
+                        case 1: $scope.StateList.push(_SConfig);break;
+                        case 2: $scope.ActionList.push(_SConfig);break;
+                        case 3: $scope.SettingList.push(_SConfig);break;
+                        default: break;
+                    }
+                }else{
+                    console.log("此传感器未配置");
+                    console.log(sensor)
+                }
+            });
+
             $scope.sensorLastDataList = $scope.Device.sensorList;
             $scope.Device.$OperateSensorList = {};
             angular.forEach($scope.Device.sensorList, function(sensor){
@@ -45,20 +67,7 @@ angular.module('app')
             getCurrentDeviceData(deviceList);
         });
         getCurrentDeviceData(DeviceService.GetDeviceList());
-        // var timer = null;
-        // $scope.refreshTimer = function(){
-        //     $interval.cancel(timer);
-        //     $scope.loadDeviceData();
-        //     $scope.TimerSecond = 30;
-        //     timer = $interval(function(){
-        //         if($scope.TimerSecond === 0){
-        //             $scope.loadDeviceData();
-        //             $scope.refreshTimer();
-        //         }
-        //         $scope.TimerSecond--;
-        //     }, 1000)
-        // };
-        // $scope.refreshTimer();
+
         $scope.StartSwitch = function(){
             var defered = $q.defer();
             var p1 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], '1');
@@ -80,10 +89,10 @@ angular.module('app')
             // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], '1')
             // .then(function(data){
             //     console.log('允许远程控制成功');
-            // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.FENGMINGQI], '1')
-            // .then(function(data){
-            //     console.log("蜂鸣器响应成功")
-            // });
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.FENGMINGQI], '1')
+            .then(function(data){
+                console.log("蜂鸣器响应成功")
+            });
             DeviceService.ControlSwitchValue($scope.Device.deviceNo, id, '1')
             .then(function(data){
                 console.log(data)
@@ -106,6 +115,20 @@ angular.module('app')
             $interval.cancel(intervalObj);
             $scope.modal.remove();
         })
+        $scope.SensorSwitch = function(sensor){
+            var value = sensor.switcher == '1'?'0':'1';
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, sensor.sensorId, value)
+                .then(function(){
+                    sensor.switcher = value;
+                })
+        };
+        $scope.SensorValue = function (sensor) {
+            var value = sensor.switcher == sensor.value;
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, sensor.sensorId, value)
+                .then(function(){
+                    $cordovaToast.show("参数设置成功！", 'short', 'bottom');
+                })
+        };
         var backAction;
         $ionicModal.fromTemplateUrl('operateModal', {
             scope: $scope,
@@ -118,6 +141,7 @@ angular.module('app')
                 return;
                 }, 401);
         });
+
         $scope.openModal = function() {
             $scope.modal.show();
         };
@@ -125,6 +149,27 @@ angular.module('app')
             $scope.modal.hide();
             backAction();
         };
+
+        var settingBackAction;
+        $ionicModal.fromTemplateUrl('settingModal', {
+            scope: $scope,
+            animation: 'slide-in-left'
+        }).then(function(modal) {
+            $scope.settingModal = modal;
+            settingBackAction= $ionicPlatform.registerBackButtonAction(function(){
+                $scope.settingModal.hide();
+                settingBackAction();
+                return;
+            }, 401);
+        });
+        $scope.openSettingModal = function() {
+            $scope.settingModal.show();
+        };
+        $scope.closeSettingModal = function() {
+            $scope.settingModal.hide();
+            settingBackAction();
+        };
+        EventBus.Subscribe('OpenSettingModal', $scope.openSettingModal);
         //Cleanup the modal when we're done with it!
         // Execute action on hide modal
         $scope.$on('modal.hidden', function() {
@@ -134,6 +179,7 @@ angular.module('app')
         $scope.$on('modal.removed', function() {
             // Execute action
         });
+
     })
 .directive("ngOnhold", function($swipe, $parse, $interval){
     //长按触发事件需要的时间

@@ -13,9 +13,256 @@ angular.module("app")
         JINGGAILUOXIA:"井盖落下",
         JINGGAITINGZHU:"井盖停住"
     })
-    .constant("SensorNameDict", {
+    /**
+     * OperateType 1:开关 2:数值 3:可切换开关
+     * Operate: true:可操作 false：不可操作
+     * Type: 1:状态 2：动作 3：参数
+     * Show: true:显示 false：不显示
+     * Special: true表示为特殊操作，不可设置
+     * defaultValue: 默认值
+     */
+    .value("OperateSensorConfig", {
         井盖升起 : {
-
+            OperateType: 1,
+            Operate: true,
+            Type: 2,
+            Show: true,
+            Special: true,
+            defaultValue: 0
+        },
+        井盖落下: {
+            OperateType: 1,
+            Operate: true,
+            Type: 2,
+            Show: true,
+            Special: true,
+            defaultValue: 0
+        },
+        井盖停住: {
+            OperateType: 1,
+            Operate: false,
+            Type: 2,
+            Show: false,
+            defaultValue: 0
+        },
+        井盖已打开: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        井盖已全开: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        井盖已关紧: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        入口光栅状态: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        井盖开启角度值: {
+            OperateType: 2,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        温度: {
+            OperateType: 2,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        湿度: {
+            OperateType: 2,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        可燃气体浓度: {
+            OperateType: 2,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        急停已触发: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        蓄能器压力不足: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        下拉压力不足: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        禁用自动蓄能: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: false,
+            defaultValue: 0
+        },
+        禁用下拉保压: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: false,
+            defaultValue: 0
+        },
+        使能温湿度传感器: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: true,
+            defaultValue: 1
+        },
+        使能倾角传感器: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: true,
+            defaultValue: 0
+        },
+        使能燃气浓度传感器: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: true,
+            defaultValue: 0
+        },
+        禁用入口报警: {
+            OperateType: 1,
+            Operate: false,
+            Type: 3,
+            Show: false,
+            defaultValue: 0
+        },
+        Modbus从站地址: {
+            OperateType: 2,
+            Operate: false,
+            Type: 3,
+            Show: false,
+            defaultValue: 10
+        },
+        通信超时时间: {
+            OperateType: 2,
+            Operate: false,
+            Type: 3,
+            Show: false,
+            defaultValue: 600
+        },
+        设备报警代码: {
+            OperateType: 2,
+            Operate: false,
+            Type: 1,
+            Show: true,
+            defaultValue: 0
+        },
+        蜂鸣器: {
+            OperateType: 1,
+            Operate: true,
+            Type: 2,
+            Show: true,
+            defaultValue: 0,
+            icon: 'icon-fengmingqi'
+        },
+        系统复位: {
+            OperateType: 1,
+            Operate: true,
+            Type: 2,
+            Show: true,
+            defaultValue: 0,
+            icon: 'icon-fuwei'
+        },
+        心跳信号: {
+            OperateType: 3,
+            Operate: true,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        握手信号: {
+            OperateType: 1,
+            Operate: true,
+            Type: 2,
+            Show: false,
+            defaultValue: 0
+        },
+        动作指令有效时间: {
+            OperateType: 2,
+            Operate: true,
+            Type: 3,
+            Show: true,
+            defaultValue: 30
+        },
+        井盖异常开启报警: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        井口异常进入报警: {
+            OperateType: 1,
+            Operate: false,
+            Type: 1,
+            Show: false,
+            defaultValue: 0
+        },
+        现场最大操作距离: {
+            OperateType: 2,
+            Operate: true,
+            Type: 3,
+            Show: true,
+            defaultValue: 20
+        },
+        远程控制验证码参考: {
+            OperateType: 2,
+            Operate: true,
+            Type: 3,
+            Show: false,
+            defaultValue: 18430
+        },
+        远程控制验证码输入: {
+            OperateType: 2,
+            Operate: true,
+            Type: 3,
+            Show: false,
+            defaultValue: 0
+        },
+        允许远程控制: {
+            OperateType: 1,
+            Operate: true,
+            Type: 3,
+            Show: false,
+            defaultValue: 0
         }
     })
 .service('DeviceService', function(qmHttp, UserService, $rootScope, $interval, config, $log, EventBus, OperateSensorNameList){
@@ -110,21 +357,12 @@ angular.module("app")
                 qmHttp.Post("device/queryDevMoniData.html",param, {tracker: useTracker})
                     .then(function(data){
                         console.log(data);
-                        var arr = [];
-                        // for(var i=0;i<125;i++){
-                        //     angular.forEach(data.deviceList, function(item){
-                        //         arr.push(item);
-                        //     })
-                        // }
-                        // self.SetDeviceList(data.deviceList);
                         _setTimestrap();
                         angular.forEach(data.deviceList, function(device, index){
-                            // device.deviceNo&&
-                            // self.GetDeviceByNo(device.deviceNo).then(function(data){
+                            device.isLine = !!device.sensorList[0].isLine;
                             device.position = [device.deviceLng, device.deviceLat];
                             createMarker(device, mapObj);
                             device.distance = 0;
-                            // })
                         });
                         self.SetDeviceList(data.deviceList);
                         $rootScope.$broadcast("UpdateDeviceList",data.deviceList);
