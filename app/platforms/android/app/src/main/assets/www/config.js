@@ -8,7 +8,7 @@ angular.module('app')
         CONPANYURL: "http://iot.hsxudong.cn",
         isTestApi: false,
         NativeWatchPosition: true, //随意
-        DefaultTimescale: 30000, //20000
+        DefaultTimescale: 20000, //20000
         VisibleMeter: 20, //20
         VisibleMeter_Valid: false //true
     })
@@ -18,7 +18,8 @@ angular.module('app')
         CONPANYURL: "http://iot.hsxudong.cn",
         isTestApi: false,
         NativeWatchPosition: true, //随意
-        DefaultTimescale: 30000, //20000
+        DefaultTimescale: 20000, //20000
         VisibleMeter: 20, //20
-        VisibleMeter_Valid: false //true
+        VisibleMeter_Valid: false, //true
+        ShowVConsole: false
     });

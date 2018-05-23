@@ -2,7 +2,7 @@
  * Created by 崔启蒙 on 2018/4/14.
  */
 angular.module('app', ['ionic', 'ui.router','ngTouch', 'app.service', 'ngCordova', 'toggle-switch'])
-    .run(function($rootScope, $ionicPlatform, $state, $ionicHistory,
+    .run(function($rootScope, $ionicPlatform, $state, $ionicHistory, config,
                   $ionicPopup, $cordovaKeyboard, $timeout, $cordovaToast, $location){
 
         $state.go('app.login', {first: 1});
@@ -48,10 +48,14 @@ angular.module('app', ['ionic', 'ui.router','ngTouch', 'app.service', 'ngCordova
             e.preventDefault();
             return false;
         }, 101);
-
+        var cache = window.localStorage.getItem("APP_CONFIG");
+        if(cache){
+            cache = JSON.parse(cache);
+            angular.extend(config, cache);
+        }
     })
-    .config(function(){
-
+    .config(function($ionicConfigProvider){
+        $ionicConfigProvider.scrolling.jsScrolling(false);
     })
     .controller('homeCtrl', ['$scope', "$rootScope", "$window", "$state", "UserService", "$location", "$ionicLoading", "Router", "$ionicHistory", "$interval",
         function($scope, $rootScope, $window, $state, UserService, $location, $ionicLoading, Router, $ionicHistory, $interval){

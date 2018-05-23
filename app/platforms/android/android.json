@@ -22,11 +22,11 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 27
+              "count": 60
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 25
+              "count": 58
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
@@ -38,12 +38,138 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\" />",
-              "count": 24
+              "count": 57
             }
           ],
           "/manifest/application": [
             {
               "xml": "<provider android:authorities=\"${applicationId}.opener.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"io.github.pwlin.cordova.plugins.fileopener2.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/opener_paths\" /></provider>",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:configChanges=\"orientation|keyboardHidden\" android:name=\"cn.jpush.android.ui.PushActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\"><intent-filter><action android:name=\"cn.jpush.android.ui.PushActivity\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"io.cordova.hellocordova\" /></intent-filter></activity>",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:exported=\"false\" android:name=\"cn.jpush.android.ui.PopWinActivity\" android:theme=\"@style/MyDialogStyle\"></activity>",
+              "count": 1
+            },
+            {
+              "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"cn.jpush.android.service.DownloadService\"></service>",
+              "count": 1
+            },
+            {
+              "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"cn.jpush.android.service.PushService\" android:process=\":remote\"><intent-filter><action android:name=\"cn.jpush.android.intent.REGISTER\" /><action android:name=\"cn.jpush.android.intent.REPORT\" /><action android:name=\"cn.jpush.android.intent.PushService\" /><action android:name=\"cn.jpush.android.intent.PUSH_TIME\" /></intent-filter></service>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:enabled=\"true\" android:exported=\"false\" android:name=\"cn.jpush.android.service.PushReceiver\"><intent-filter android:priority=\"1000\"><action android:name=\"cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY\" /><category android:name=\"io.cordova.hellocordova\" /></intent-filter><intent-filter><action android:name=\"android.intent.action.USER_PRESENT\" /><action android:name=\"android.net.conn.CONNECTIVITY_CHANGE\" /></intent-filter><intent-filter><action android:name=\"android.intent.action.PACKAGE_ADDED\" /><action android:name=\"android.intent.action.PACKAGE_REMOVED\" /><data android:scheme=\"package\" /></intent-filter></receiver>",
+              "count": 1
+            },
+            {
+              "xml": "<service android:enabled=\"true\" android:exported=\"true\" android:name=\"cn.jpush.android.service.DaemonService\"><intent-filter><action android:name=\"cn.jpush.android.intent.DaemonService\" /><category android:name=\"io.cordova.hellocordova\" /></intent-filter></service>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:enabled=\"true\" android:name=\"cn.jiguang.cordova.push.JPushReceiver\"><intent-filter><action android:name=\"cn.jpush.android.intent.REGISTRATION\" /><action android:name=\"cn.jpush.android.intent.MESSAGE_RECEIVED\" /><action android:name=\"cn.jpush.android.intent.NOTIFICATION_RECEIVED\" /><action android:name=\"cn.jpush.android.intent.NOTIFICATION_OPENED\" /><action android:name=\"cn.jpush.android.intent.CONNECTION\" /><category android:name=\"io.cordova.hellocordova\" /></intent-filter></receiver>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"cn.jpush.android.service.AlarmReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<provider android:authorities=\"io.cordova.hellocordova.DataProvider\" android:exported=\"true\" android:name=\"cn.jpush.android.service.DataProvider\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:name=\"cn.jiguang.cordova.push.JPushEventReceiver\"><intent-filter><action android:name=\"cn.jpush.android.intent.RECEIVE_MESSAGE\" /><category android:name=\"io.cordova.hellocordova\" /></intent-filter></receiver>",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"JPUSH_CHANNEL\" android:value=\"developer-default\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"JPUSH_APPKEY\" android:value=\"b16e33cc59805053c59ac6ce\" />",
+              "count": 1
+            },
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.TriggerReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClearReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<service android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:directBootAware=\"true\" android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.RestoreReceiver\"><intent-filter><action android:name=\"android.intent.action.LOCKED_BOOT_COMPLETED\" /><action android:name=\"android.intent.action.BOOT_COMPLETED\" /></intent-filter></receiver>",
+              "count": 1
+            }
+          ],
+          "/manifest": [
+            {
+              "xml": "<permission android:name=\"io.cordova.hellocordova.permission.JPUSH_MESSAGE\" android:protectionLevel=\"signature\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"io.cordova.hellocordova.permission.JPUSH_MESSAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
               "count": 1
             }
           ]
@@ -115,6 +241,18 @@
             {
               "xml": "<feature name=\"Permissions\"><param name=\"android-package\" value=\"com.android.plugins.Permissions\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"JPushPlugin\"><param name=\"android-package\" value=\"cn.jiguang.cordova.push.JPushPlugin\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -165,6 +303,22 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-jcore": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "jpush-phonegap-plugin": {
+      "APP_KEY": "b16e33cc59805053c59ac6ce",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-vibration": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -470,6 +624,30 @@
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "id": "jpush-phonegap-plugin.JPushPlugin",
+      "file": "plugins/jpush-phonegap-plugin/www/JPushPlugin.js",
+      "pluginId": "jpush-phonegap-plugin",
+      "clobbers": [
+        "JPush"
+      ]
+    },
+    {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "clobbers": [
+        "cordova.plugins.notification.local"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -487,6 +665,11 @@
     "cordova-plugin-file-opener2": "2.0.19",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-network-information": "2.0.1",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-jcore": "1.2.0",
+    "jpush-phonegap-plugin": "3.4.1",
+    "cordova-plugin-badge": "0.8.7",
+    "cordova-plugin-local-notification": "0.9.0-beta.3",
+    "cordova-plugin-vibration": "3.1.0"
   }
 }

@@ -51,7 +51,24 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "jpush-phonegap-plugin": {
+      "APP_KEY": "b16e33cc59805053c59ac6ce",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-jcore": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    }
+  }
 }

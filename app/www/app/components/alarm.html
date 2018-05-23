@@ -1,0 +1,22 @@
+<ion-header-bar align-title="center">
+    <div class="buttons">
+        <button class="button button-icon iconfont icon-back" ng-click="GOBACK()"></button>
+    </div>
+    <h1 class="title">{{$root.Page.$Title}}</h1>
+    <div class="buttons">
+        <button class="button button-icon iconfont icon-close" ui-sref="app.main"></button>
+    </div>
+</ion-header-bar>
+<ion-content>
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list class="a-list">
+        <ion-item ng-repeat="alarm in list" ng-class="{'alarm-not-read': !alarm.IsRead}" ng-click="AlarmDetailPopup(alarm)">
+            <p>{{alarm.triggerDate|date : 'HH:mm:ss'}}:</p>
+            <p>{{alarm.triggerContent}}</p>
+            <p>{{alarm.IsRead?"已读":"未读"}}</p>
+        </ion-item>
+        <ion-item class="no-more" ng-if="!moredata">已经到底啦</ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="moredata" on-infinite="loadMore()" distance="1%" ></ion-infinite-scroll>
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+</ion-content>

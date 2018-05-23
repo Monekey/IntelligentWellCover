@@ -1,4 +1,4 @@
-<div class="main-content">
+<!--<div class="main-content">-->
 <!--<ion-side-menus>-->
     <!-- 中间内容 -->
     <!--<ion-side-menu-content>-->
@@ -8,36 +8,48 @@
             <!--<a class="button button-icon icon ion-ios-location" ng-click="panToLocation()"></a>-->
         <!--</div>-->
 <!--<ion-tabs class="tabs-bottom"></ion-tabs>-->
-<ion-content>
+<ion-content style="overflow: hidden;">
     <a-map></a-map>
     <div class="modal-view" ng-class="{'modal-view-show': !state.is('app.main')}">
-        <ion-header-bar align-title="center" class="" ng-hide="$root.Page.$HideTitle">
-            <div class="buttons">
-                <button class="button button-icon iconfont icon-back" ng-click="GOBACK()"></button>
-            </div>
-            <h1 class="title">{{$root.Page.$Title}}</h1>
-            <div class="buttons">
-                <button ng-hide="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-close" ui-sref="app.main"></button>
-                <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ng-click="openSettingModal();"></button>
-            </div>
-        </ion-header-bar>
-        <ion-content>
-            <ui-view></ui-view>
-        </ion-content>
+        <ui-view></ui-view>
+    </div>
+    <div class="alarm-alert-message" ng-show="TotalAlarms.length">
+        <marquee>
+            <span ng-repeat="item in TotalAlarms" style="margin-right: 10px;">{{$index + "." + item.triggerContent}}</span>
+        </marquee>
     </div>
 </ion-content>
 <ion-footer-bar align-title="center">
     <div class="buttons">
-        <a ui-sref="app.main.deviceList"  ui-sref-active="nav-active" class="button button-icon iconfont icon-listview"></a>
+        <a ui-sref="app.main.nav.deviceList"  ui-sref-active="nav-active" class="button button-icon iconfont icon-listview"></a>
     </div>
     <div class="title">
         <button ui-sref="app.main" style="line-height: 36px;" ng-class="{'nav-active icon-dangdifill': state.is('app.main'),'icon-dangdi': !state.is('app.main')}" class="button-icon iconfont"></button>
     </div>
     <div class="buttons">
-        <a ui-sref="app.main.user" ui-sref-active="nav-active" class="button button-icon iconfont icon-geren"></a>
+        <a ui-sref="app.main.nav.user" ui-sref-active="nav-active" class="button button-icon iconfont icon-geren"></a>
     </div>
 </ion-footer-bar>
-
+<script id="alarmsDetailModal" type="text/ng-template">
+        <ion-modal-view style="background: transparent;">
+            <ion-header-bar align-title="center" class="">
+                <div class="buttons">
+                    <button class="button button-icon iconfont icon-close" ng-click="closeModal()"></button>
+                </div>
+                <h1 class="title">报警信息 共{{CurAlarmList.length}}条</h1>
+            </ion-header-bar>
+            <ion-content on-swipe-left="closeModal()" class="operate-panel">
+                <div class="list a-list">
+                    <div class="item" ng-class="{'alarm-not-read': !alarm.IsRead}"
+                         ng-repeat="alarm in CurAlarmList|orderBy:'-triggerDate'"
+                         ng-click="AlarmDetailPopup(alarm)">
+                        <p>{{alarm.triggerDate | date : 'HH:mm:ss'}}:{{alarm.triggerContent}}</p>
+                        <p ng-click="">{{alarm.IsRead?"已读":"未读"}}</p>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
     <!--</ion-side-menu-content>-->
 
     <!-- 左侧菜单 -->
@@ -45,4 +57,4 @@
     <!--</ion-side-menu>-->
 <!--</ion-side-menus>-->
 
-</div>
+<!--</div>-->

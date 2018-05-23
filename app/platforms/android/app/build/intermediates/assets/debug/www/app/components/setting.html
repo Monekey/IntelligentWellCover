@@ -1,11 +1,19 @@
 <div>
     <ul class="list setting-page">
-        <a class="item item-icon-left">
+        <div class="item item-icon-left">
             最大可操作距离：
             <input ng-model="config.VisibleMeter" ng-blur="checkEmpty('VisibleMeter')">米
-        </a>
+        </div>
+        <div ng-show="showMoreSetting">
+            <div>
+                <ion-toggle ng-model="config.ShowVConsole" ng-change="changeVConsole()"
+                            toggle-class="toggle-calm">
+                    显示调试面板
+                </ion-toggle>
+            </div>
+        </div>
 
-        <a class="item" ng-click="OpenMoreSetting()">
+        <a ng-hide="showMoreSetting" class="item" ng-click="OpenMoreSetting()">
             更多设置...
         </a>
     </ul>

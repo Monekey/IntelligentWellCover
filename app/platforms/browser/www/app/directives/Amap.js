@@ -2,21 +2,13 @@
  * Created by 崔启蒙 on 2018/4/19.
  */
 angular.module("app")
-    .directive("aMap", function($interval, qmHttp, UserService, Widget, DeviceService, $cordovaToast, EventBus, $state, config){
+    .directive("aMap", function($interval, qmHttp, UserService, Widget, DeviceService, $cordovaToast, EventBus, $state, config, $rootScope){
         return {
             restrict: "AE",
-            template: "<div id='AMAP_CONTENT' class='AMap-content'></div>" +
-            "<div class='map-icon-bar'>" +
-            "<i class='iconfont icon-browse font-bold' ng-click='seeAll()'></i>" +
-            "<i class='iconfont icon-baojing alarm-normal' ng-class='{\"alarm-color\": true}' ng-click='panToLocation()'></i>" +
-            "</div>"+
-            "<div class='map-icon-location' ng-click='panToLocation()'>" +
-            // "<i class='iconfont' ng-class='{\"icon-dingwei3\": CenterChanged, \"icon-dingwei1 Rotation\": !CenterChanged}' ng-click='panToLocation()'></i>" +
-            "<i ng-show='CenterChanged' class='iconfont icon-dingwei3'></i>" +
-            "<ion-spinner ng-hide='CenterChanged' icon=\"ripple\" class=\"spinner-assertive\"></ion-spinner>" +
-            "</div>",
+            templateUrl: "app/directives/Amap.html",
             scope: {},
             link: function(scope, ele, attr){
+                scope.state = $state;
                 var intervalObj = null, watched = null;
                 var currLocation={};
                 var domID = "AMAP_CONTENT";
@@ -52,22 +44,28 @@ angular.module("app")
 
                 function panTo(device){
                     mapObj.panTo(device.position);
+                    device.openInfoWin(device);
                     CenterPositionChanged();
                 }
                 EventBus.Subscribe('PANTO', panTo);
                 EventBus.Subscribe('GetDistance', GetDistance);
                 DeviceService.StartTimer(mapObj);
-                DeviceService.GetAlarms();
+                // DeviceService.GetAlarms();
                 // EventBus.Subscribe('getDeviceData', getDeviceData);
                 EventBus.Subscribe('panToLocation', panToLocation);
+                scope.seeAll=function(){
+                    var newCenter = mapObj.setFitView();
+                    CenterPositionChanged();
+                };
+                EventBus.Subscribe('seeAll', scope.seeAll);
                 //也可以在创建完成后通过setMap方法执行地图对象
                 // marker.setMap(mapObj);
-                var Circle = new AMap.Circle({
-                    map: mapObj,
-                    // center: e.position,
-                    radius: config.VisibleMeter,
-                    strokeOpacity: 0
-                });
+                // var Circle = new AMap.Circle({
+                //     map: mapObj,
+                //     // center: e.position,
+                //     radius: config.VisibleMeter,
+                //     strokeOpacity: 0
+                // });
                 mapObj.plugin(["AMap.ToolBar"],function(){
                     //加载工具条
                     var tool = new AMap.ToolBar();
@@ -84,7 +82,7 @@ angular.module("app")
                         // buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
                         showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
                         // markerOptions: true,
-                        showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                        showCircle: false,        //定位成功后用圆圈表示定位精度范围，默认：true
                         panToLocation: false,     //定位成功后将定位到的位置作为地图中心点，默认：true
                         zoomToAccuracy:false      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                     }
@@ -120,8 +118,9 @@ angular.module("app")
                 });
                 function onComplete(e) {
                     currLocation=e;
-                    Circle.setCenter(e.position)
-                    console.log(e)
+                    $rootScope.CurrPosition = e.position;
+                    //Circle.setCenter(e.position)
+                    console.log(e);
 
                     if(scope.CenterChanged === false){
                         if(_firstLoading){
@@ -134,12 +133,12 @@ angular.module("app")
                     reloadDeviceList(e.position);
                 }
                 function onError(e) {
-                    $cordovaToast.showShortTop('定位失败，请确保打开定位并保持网络通畅');
+                    $cordovaToast.showShortTop('请确保打开定位并保持网络通畅');
                     console.log(e)
                 }
 
                 scope.$on("UpdateDeviceList", function(){
-                    console.log(11)
+                    console.log("AMap.js 接受广播： UpdateDeviceList");
                     currLocation.position&&reloadDeviceList(currLocation.position);
                 });
                 function reloadDeviceList(p){
@@ -169,10 +168,11 @@ angular.module("app")
                     mapObj.setZoom(16);
                     CenterPositionTracked();
                 }
-                scope.seeAll=function(){
-                    var newCenter = mapObj.setFitView();
-                    CenterPositionChanged();
-                };
+
+                scope.gotoAlarmList = function(){
+                    $state.go('app.main.alarm')
+                }
+                scope.IsAlarmListNotAllRead = DeviceService.IsAlarmListNotAllRead;
 
                 scope.$on('$destroy', function(){
                     $interval.cancel(intervalObj);

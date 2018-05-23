@@ -1,31 +1,14 @@
-<div class="bar bar-header">
-    <a class="button-icon ion-person"></a>
-    <a class="title">设备列表</a>
-    <a class="button button-clear"></a>
-</div>
+<ion-header-bar align-title="center" class="" ng-hide="$root.Page.$HideTitle">
+    <div class="buttons">
+        <button class="button button-icon iconfont icon-back" ng-click="GOBACK()"></button>
+    </div>
+    <h1 class="title">{{$root.Page.$Title}}</h1>
+    <div class="buttons">
+        <button ng-hide="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-close" ui-sref="app.main"></button>
+        <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ng-click="openSettingModal();"></button>
+    </div>
+</ion-header-bar>
 <ion-content>
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <ui-view></ui-view>
 </ion-content>
-<!--<ion-tabs class="tabs-bottom"></ion-tabs>-->
-<div class="bar bar-footer">
-    <button class="button button-clear">Left</button>
-    <a class="title">
-        <button class="button-icon ion-settings"></button>
-    </a>
-    <button class="button button-clear">Right</button>
-</div>
-<!--<ion-tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive">-->
-
-    <!--<ion-tab title="Home" icon="ion-home" href="#/nav/main">-->
-        <!--<ion-nav-view name="home-tab"></ion-nav-view>-->
-    <!--</ion-tab>-->
-
-    <!--<ion-tab title="About" icon="ion-ios7-information" href="#/tab/about">-->
-        <!--<ion-nav-view name="about-tab"></ion-nav-view>-->
-    <!--</ion-tab>-->
-
-    <!--<ion-tab title="Contact" icon="ion-ios7-world" ui-sref="tabs.contact">-->
-        <!--<ion-nav-view name="contact-tab"></ion-nav-view>-->
-    <!--</ion-tab>-->
-
-<!--</ion-tabs>-->

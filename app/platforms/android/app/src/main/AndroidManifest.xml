@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<manifest android:hardwareAccelerated="true" android:versionCode="10001" android:versionName="1.0.1" package="io.cordova.hellocordova" xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest android:hardwareAccelerated="true" android:versionCode="10007" android:versionName="1.0.7" package="io.cordova.hellocordova" xmlns:android="http://schemas.android.com/apk/res/android">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application android:hardwareAccelerated="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:supportsRtl="true">
@@ -12,6 +12,76 @@
         <provider android:authorities="${applicationId}.opener.provider" android:exported="false" android:grantUriPermissions="true" android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/opener_paths" />
         </provider>
+        <activity android:configChanges="orientation|keyboardHidden" android:name="cn.jpush.android.ui.PushActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="io.cordova.hellocordova" />
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="cn.jpush.android.ui.PopWinActivity" android:theme="@style/MyDialogStyle" />
+        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.DownloadService" />
+        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.PushService" android:process=":remote">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <receiver android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.PushReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <category android:name="io.cordova.hellocordova" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <service android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.DaemonService">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="io.cordova.hellocordova" />
+            </intent-filter>
+        </service>
+        <receiver android:enabled="true" android:name="cn.jiguang.cordova.push.JPushReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="io.cordova.hellocordova" />
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="cn.jpush.android.service.AlarmReceiver" />
+        <provider android:authorities="io.cordova.hellocordova.DataProvider" android:exported="true" android:name="cn.jpush.android.service.DataProvider" />
+        <receiver android:name="cn.jiguang.cordova.push.JPushEventReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="io.cordova.hellocordova" />
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
+        <meta-data android:name="JPUSH_APPKEY" android:value="b16e33cc59805053c59ac6ce" />
+        <provider android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true" android:name="de.appplant.cordova.plugin.notification.util.AssetProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/localnotification_provider_paths" />
+        </provider>
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.TriggerReceiver" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.ClearReceiver" />
+        <service android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.ClickReceiver" />
+        <receiver android:directBootAware="true" android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.RestoreReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -22,4 +92,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <permission android:name="io.cordova.hellocordova.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="io.cordova.hellocordova.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 </manifest>

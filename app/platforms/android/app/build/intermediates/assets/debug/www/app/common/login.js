@@ -14,7 +14,7 @@ angular.module('app')
                 // $ionicLoading.show({
                 //     template: 'Loading...'
                 // });
-            if(false && !GV.validate($scope.valicode)){
+            if(!GV.validate($scope.valicode)){
                 // Widget.ShowAlert('验证码错误');
                 /**
                  * 显示原生的toast

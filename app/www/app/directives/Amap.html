@@ -1,0 +1,9 @@
+<div id='AMAP_CONTENT' class='AMap-content'></div>
+<div class='map-icon-bar'>
+    <i class='iconfont icon-browse font-bold' ng-click='seeAll()'></i>
+    <i class='iconfont icon-baojing alarm-normal' ng-class='{"alarm-color": IsAlarmListNotAllRead()}' ng-click='gotoAlarmList()'></i>
+    </div>
+<div class='map-icon-location' ng-class="{'map-icon-location-up': !state.is('app.main')}" ng-click='panToLocation()'>
+    <i ng-show='CenterChanged' class='iconfont icon-dingwei3'></i>
+    <ion-spinner ng-hide='CenterChanged' icon="ripple" class="spinner-assertive"></ion-spinner>
+</div>

@@ -1,12 +1,20 @@
-<!--<ion-header-bar class="bar bar-header">-->
-    <!--<a class="button button-icon iconfont icon-back" ng-click="GOBACK()"></a>-->
-    <!--<a class="title">{{Device.deviceName}}</a>-->
-    <!--<a class="button button-icon iconfont icon-refresh" ng-click="refreshTimer()"></a>-->
-<!--</ion-header-bar>-->
-<span class="device-refresh-time">更新于{{DateAfter}}s前</span>
+<ion-header-bar align-title="center" class="" ng-hide="$root.Page.$HideTitle">
+    <div class="buttons">
+        <button class="button button-icon iconfont icon-back" ng-click="GOBACK()"></button>
+    </div>
+    <h1 class="title">{{deviceName}}</h1>
+    <div class="buttons">
+        <button ng-show="state.is('app.main.deviceDetail')" class="button button-icon iconfont icon-shezhi" ng-click="OpenMoreSetting()"></button>
+    </div>
+</ion-header-bar>
 <ion-content>
-    <div class="list sensor-list">
-        <div class="item" ng-class="{'offline': !sensor.isLine}" ng-repeat="sensorConfig in StateList" ng-show="sensorConfig.Show" ng-init="sensor = sensorConfig.sensor; sensor.ts = (sensor.switcher=='1')">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list class="sensor-list">
+        <ion-item class="item">
+            <span>距离：{{Device.distance|distanceNum}}</span>
+            <a ng-show="Device.NewAlarmCount" class="a-red" ng-click="alarmDetailModal()">{{Device.NewAlarmCount}}条报警</a>
+        </ion-item>
+        <ion-item class="item" ng-class="{'offline': !sensor.isLine}" ng-repeat="sensorConfig in StateList" ng-show="sensorConfig.Show" ng-init="sensor = sensorConfig.sensor; sensor.ts = (sensor.switcher=='1')">
             <div class="row">
                 <div class="col-20" style="padding-top: 5px;">
                     <img ng-src="{{::sensor.iocUrl|ImgUrlFixed}}"/>
@@ -18,7 +26,7 @@
                     <div class="row">
                         <span class="online-text" ng-if="sensor.isLine">在线</span>
                         <span class="offline-text" ng-if="!sensor.isLine">离线</span>
-                        <span ng-bind="::sensor.sensorId"></span>
+                        <!--<span ng-bind="::sensor.sensorId"></span>-->
                     </div>
                 </div>
                 <div class="col sensor-data">
@@ -49,74 +57,100 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </ion-item>
+        <ion-item class="no-more">已经到底啦</ion-item>
+    </ion-list>
     <!--<div class="sensor-list-wrapped"></div>-->
 </ion-content>
-<div class="operate-btn">
-    <i class="iconfont icon-shezhi" ng-click="openModal()"></i>
-    <script id="operateModal" type="text/ng-template">
-        <ion-modal-view>
-            <!--<ion-header-bar>-->
-                <!--<h1 class="title">My Modal title</h1>-->
-            <!--</ion-header-bar>-->
-            <ion-content on-swipe-left="closeModal()" class="operate-panel">
-                <div class="action-list">
-                    <div ng-repeat="sensorConifg in ActionList" ng-show="sensorConifg.Show && !sensorConifg.Special">
-                        <!--<img ng-src="{{::sensorConifg.sensor.iocUrl|ImgUrlFixed}}"/>-->
-                        <i class="iconfont {{sensorConifg.icon || 'icon-cry'}}" ng-class="{'sensor-on': sensorConifg.sensor.switcher == '1'}" ng-click="SensorSwitch(sensorConifg.sensor)"></i>
+<span class="device-refresh-time">更新于{{DateAfter}}s前</span>
+<div class="operate-btn" ng-class="{'operate-btn-active': operateModalShow}">
+    <i class="iconfont icon-caozuo" ng-click="openModal()"></i>
+</div>
+<script id="operateModal" type="text/ng-template">
+    <ion-modal-view style="background: transparent;">
+        <ion-header-bar align-title="center" class="operate-panel">
+            <div class="buttons">
+                <button class="button button-icon iconfont icon-close" ng-click="closeModal()"></button>
+            </div>
+            <h1 class="title">设备操作</h1>
+        </ion-header-bar>
+        <ion-content on-swipe-left="closeModal()" class="operate-panel">
+            <div class="action-list">
+                <div ng-repeat="sensorConifg in ActionList" ng-show="::sensorConifg.Show && !sensorConifg.Special">
+                    <!--<img ng-src="{{::sensorConifg.sensor.iocUrl|ImgUrlFixed}}"/>-->
+                    <i ng-disabled="!Device.isLine" class="iconfont {{::sensorConifg.icon || 'icon-cry'}}" ng-class="{'sensor-on': sensorConifg.sensor.switcher == '1'}" ng-click="SensorSwitch(sensorConifg)"></i>
+                    <div class="iconfont-bottom-text" ng-bind="::sensorConifg.sensor.sensorName"></div>
+                </div>
+            </div>
+            <div class="sensor-operate-bar">
+                <div class="button sensor-operate-up" ng-disabled="!Device.isLine" ng-onhold="ChangeSwitch('up')" ng-onhold-end="CancelSwitch()" ng-onhold-start="StartSwitch()">
+                    <button class="button button-icon iconfont icon-tubiao103" ng-disabled="!Device.isLine"></button>
+                    <div class="help-info">
+                        <span ng-hide="holdHelpError || triggerHoldOn_up">按住启动</span>
+                        <span ng-show="!holdHelpError && triggerHoldOn_up">正在操作，移动或松开手指可以终止。</span>
+                        <span ng-show="holdHelpError" style="color:red;">距离过远！</span>
                     </div>
                 </div>
-                <div class="sensor-operate-bar">
-                    <div class="sensor-operate-up" ng-onhold="ChangeSwitch('up')" ng-onhold-end="CancelSwitch()" ng-onhold-start="StartSwitch()">
-                        <button class="button button-icon iconfont icon-tubiao103"></button>
-                    </div>
-                    <div class="sensor-operate-down" ng-onhold="ChangeSwitch('down')" ng-onhold-end="CancelSwitch" ng-onhold-start="StartSwitch()">
-                        <button class="button button-icon iconfont icon-tubiao104" ></button>
+                <div class="button sensor-operate-down" ng-disabled="!Device.isLine" ng-onhold="ChangeSwitch('down')" ng-onhold-end="CancelSwitch()" ng-onhold-start="StartSwitch()">
+                    <button class="button button-icon iconfont icon-tubiao104" ng-disabled="!Device.isLine"></button>
+                    <div class="help-info">
+                        <span ng-hide="holdHelpError || triggerHoldOn_down">按住启动</span>
+                        <span ng-show="!holdHelpError && triggerHoldOn_down">正在操作，移动或松开手指可以终止。</span>
+                        <span ng-show="holdHelpError" style="color:red;">距离过远！</span>
                     </div>
                 </div>
-            </ion-content>
-        </ion-modal-view>
-    </script>
-    <script id="settingModal" type="text/ng-template">
-        <ion-modal-view>
-            <!--<ion-header-bar>-->
-            <!--<h1 class="title">My Modal title</h1>-->
-            <!--</ion-header-bar>-->
-            <ion-content on-swipe-left="closeSettingModal()" class="operate-panel">
-                <div class="setting-list sensor-list List">
-                    <div class="item" ng-repeat="sensorConifg in SettingList">
-                        <div class="row">
-                            <div class="col-20" style="padding-top: 5px;">
-                                <img ng-src="{{::sensorConifg.sensor.iocUrl|ImgUrlFixed}}"/>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="settingModal" type="text/ng-template">
+    <ion-modal-view style="background: transparent;">
+        <ion-header-bar align-title="center">
+            <div class="buttons">
+                <button class="button button-icon iconfont icon-close" ng-click="closeSettingModal()"></button>
+            </div>
+            <h1 class="title">参数设置</h1>
+        </ion-header-bar>
+        <ion-content on-swipe-left="closeSettingModal()" class="padding operate-panel">
+            <div class="setting-list sensor-list List">
+                <div class="item" ng-repeat="sensorConifg in SettingList">
+                    <div ng-if="sensorConifg.OperateType==1">
+                        <ion-toggle ng-model="sensorConifg.sensor.switcher" ng-change="SensorSwitchToggle(sensorConifg)"
+                                    ng-true-value="'1'" ng-false-value="'0'"
+                                    toggle-class="toggle-calm">
+                            <img ng-src="{{::sensorConifg.sensor.iocUrl|ImgUrlFixed}}"/>{{sensorConifg.sensor.sensorName}}
+                        </ion-toggle>
+                    </div>
+                    <div class="row" ng-if="sensorConifg.OperateType==2">
+                        <div class="col-20" style="padding: 5px 0 0 10px;">
+                            <img ng-src="{{::sensorConifg.sensor.iocUrl|ImgUrlFixed}}"/>
+                        </div>
+                        <div class="col-50" style="line-height: 55px;">
+                            <span ng-bind="::sensorConifg.sensor.sensorName"></span>
+                        </div>
+                        <div class="col sensor-data">
+                            <!--数值型-->
+                            <div ng-if="sensorConifg.OperateType==2">
+                                <input type="text" ng-model="sensorConifg.sensor.value" ng-click="OpenSensorValueModal(sensorConifg)">{{sensorConifg.sensor.unit}}
+                                <!--<span><button class="button" ng-click="SensorValue(sensorConifg.sensor)">确认</button></span>-->
                             </div>
-                            <div class="col-50">
-                                <span ng-bind="::sensorConifg.sensor.sensorName"></span>
+                            <!-- 档位型 -->
+                            <div ng-if="sensorConifg.OperateType==1">
+                                <i class="iconfont" ng-class="{'icon-kaiguanguan1': sensorConifg.sensor.switcher != '1','icon-kaiguankai':sensorConifg.sensor.switcher == '1'}"
+                                   ng-click="SensorSwitch(sensorConifg)"></i>
                             </div>
-                            <div class="col sensor-data">
-                                <!--数值型-->
-                                <div ng-if="sensorConifg.OperateType==2">
-                                    <input type="text" ng-model="sensor.value">{{sensor.unit}}
-                                    <span><button class="button" ng-click="SensorValue(sensorConifg.sensor)">确认</button></span>
-                                </div>
-                                <!-- 档位型 -->
-                                <div ng-if="sensorConifg.OperateType==1">
-                                    <i class="iconfont" ng-class="{'icon-kaiguanguan1': sensorConifg.sensor.switcher != '1','icon-kaiguankai':sensorConifg.sensor.switcher == '1'}"
-                                       ng-click="SensorSwitch(sensorConifg.sensor)"></i>
-                                </div>
-                                <!-- 定位型 -->
-                                <div  ng-if="sensor['sensorType']==5">
+                            <!-- 定位型 -->
+                            <div  ng-if="sensor['sensorType']==5">
 
-                                    <!--<ion-toggle ng-model="sensor.switcher" toggle-class="toggle-calm"-->
-                                    <!--ng-true-value="'1'"-->
-                                    <!--ng-false-value="'0'"></ion-toggle>-->
-                                </div>
+                                <!--<ion-toggle ng-model="sensor.switcher" toggle-class="toggle-calm"-->
+                                <!--ng-true-value="'1'"-->
+                                <!--ng-false-value="'0'"></ion-toggle>-->
                             </div>
                         </div>
                     </div>
                 </div>
-            </ion-content>
-        </ion-modal-view>
-    </script>
-</div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
 

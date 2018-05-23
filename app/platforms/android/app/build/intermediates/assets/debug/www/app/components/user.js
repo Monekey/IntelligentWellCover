@@ -8,7 +8,7 @@ angular.module("app")
             UpdateService.CheckUpdate('popup');
         }
     })
-    .controller('settingCtrl', function($scope, config, DefaultConfig, Widget, $ionicPopup){
+    .controller('settingCtrl', function($scope, config, DefaultConfig, Widget, $ionicPopup, $rootScope){
         $scope.config = config;
         $scope.reset = function(){
             $scope.config = config = DefaultConfig;
@@ -17,16 +17,37 @@ angular.module("app")
             if($scope.config[key] === ""){
                 $scope.config[key] = DefaultConfig[key]
             }
-        }
+        };
+        $scope.$on("$destroy", function(){
+            window.localStorage.setItem("APP_CONFIG", JSON.stringify(config));
+        });
+        $scope.changeVConsole = function(){
+            if(config.ShowVConsole){
+                vConsole.showSwitch();
+            }else {
+                vConsole.hideSwitch();
+            }
+        };
         $scope.OpenMoreSetting = function(){
            $ionicPopup.prompt({
                 title: '验证管理员身份',
                 // template: 'Enter your secret password',
                 inputType: 'password',
                 inputPlaceholder: '请输入密码'
+               // buttons: [
+               //     { text: '取消' },
+               //     {
+               //         text: '<b>确定</b>',
+               //         type: 'button-positive',
+               //         onTap: function(e) {
+               //
+               //         }
+               //     }
+               // ]
            }).then(function(res) {
                if(res == '000000'){
                    Widget.ShowAlert('密码正确！')
+                   $rootScope.showMoreSetting = true;
                }else {
                    Widget.ShowAlert('密码错误！')
                }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.cordova.hellocordova" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>旭东智慧管廊</name>
     <description>
        智能井盖
@@ -16,6 +16,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="StatusBarBackgroundColor" value="#FF000000" />
     <platform name="android">
         <feature name="Toast">
             <param name="android-package" value="nl.xservices.plugins.Toast" />
@@ -25,6 +26,14 @@
         <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
         <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
         <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <splash density="land-hdpi" src="res/screen/android/screen-hdpi-landscape.png" />
+        <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+        <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+        <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
         <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -50,6 +59,11 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <plugin name="jpush-phonegap-plugin" spec="^3.4.2">
+        <variable name="APP_KEY" value="b16e33cc59805053c59ac6ce" />
+    </plugin>
+    <plugin name="cordova-plugin-local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git" />
+    <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
 </widget>

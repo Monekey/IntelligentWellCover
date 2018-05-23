@@ -244,14 +244,14 @@
 }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
-    font-family: sans-serif;
-    line-height: 1.15;
+    /* font-family: sans-serif; */
+    /* line-height: 1.15; */
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    /* -webkit-text-size-adjust: 100%; */
 }
 
 body {
-    margin: 0
+    /* margin: 0 */
 }
 
 article,aside,footer,header,nav,section {
@@ -453,21 +453,21 @@ template {
 }
 
 html,body,article,aside,details,figcaption,figure,footer,header,main,nav,section,summary,h1,h2,h3,h4,h5,h6,p {
-    margin: 0;
-    padding: 0
+    /* margin: 0; */
+    /* padding: 0; */
 }
 
 *,*::before,*::after {
-    box-sizing: border-box
+    /* box-sizing: border-box */
 }
 
 body {
-    min-width: 320px;
+    /* min-width: 320px; */
     background-color: #eeeeee;
-    color: #3c3c3c;
-    font-family: 微软雅黑;
-    font-size: 15px;
-    line-height: 1.618;
+    /* color: #3c3c3c; */
+    /* font-family: 微软雅黑; */
+    /* font-size: 15px; */
+    /* line-height: 1.618; */
 }
 
 button,input,select,textarea {

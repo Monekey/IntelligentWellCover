@@ -27,8 +27,8 @@
 }
 
 .device-refresh-time{
-    position: fixed;
-    top: 0px;
+    position: absolute;
+    top: 42px;
     right: 0px;
     background: transparent;
     font-size: 12px;
@@ -47,11 +47,18 @@
     text-align: center;
     font-size: 30px;
 }
+.sensor-operate-bar .iconfont.icon-tubiao104{
+    /* margin-left: 1px; */
+    /* margin-top: 8px; */
+}
 .sensor-operate-bar .iconfont{
-    font-size: 60px;
-    line-height: 60px;
-    margin-top: 4px;
-    margin-left: -1px;
+    font-size: 56px;
+    line-height: 56px;
+    margin-top: 5px;
+    margin-left: -11px;
+    text-align: center;
+    width: 100%;
+    width: 70px;
 }
 .sensor-operate-bar .sensor-operate-up{
     background: rgba(255, 255, 255, 0.88);
@@ -62,6 +69,56 @@
     width: 70px;
     height: 70px;
     text-align: center;
+    border: none;
+    transition: 0.15s ease-out;
+}
+.sensor-operate-bar .sensor-operate-down.activated,
+.sensor-operate-bar .sensor-operate-up.activated{
+    box-shadow: 0px 0px 15px #a3f205;
+    background: #90d700;
+    /*     width: 120px; */
+    /*     height: 120px; */
+    z-index: 9999999;
+    /*     transform: scale(1.4,1.4); */
+    transition: 0.5s ease-in;
+}
+.sensor-operate-bar .sensor-operate-down.activated .iconfont,
+.sensor-operate-bar .sensor-operate-up.activated .iconfont{
+    color: #FFF;
+    transition: 0.5s;
+}
+.sensor-operate-bar .sensor-operate-down.activated .help-info,
+.sensor-operate-bar .sensor-operate-up.activated .help-info{
+    display: block;
+    transition: 0.5s;
+
+}
+.help-info{
+    position: absolute;
+    display: none;
+    font-size: 14px;
+    width: 150px;
+    top: -70px;
+    z-index: 200;
+    background: #b1b1b1;
+    border-radius: 20px;
+    color: #000;
+    left: -40px;
+    padding: 0 10px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.sensor-operate-bar .sensor-operate-up.hold-on{
+    /*background: yellowgreen;*/
+    /*transition: 0.5s;*/
+}
+.sensor-operate-bar .sensor-operate-up.hold-start,
+.sensor-operate-bar .sensor-operate-down.hold-start{
+    background: yellowgreen;
+    transition: 0.5s;
+}
+.sensor-operate-bar .sensor-operate-down.hold-on{
+
 }
 .sensor-operate-bar .sensor-operate-down{
     background: rgba(255, 255, 255, 0.88);
@@ -82,25 +139,29 @@
 
 .modal-view{
     position: absolute;
+    /* display: none; */
     bottom: -100%;
     left: 0;
-    height: 100%;
+    height: 92%;
     width: 100%;
     z-index: 1000;
     background: #ffffff;
-    transition: 0.15s;
+    transition: 0.1s;
     opacity: 0;
+    overflow-y: scroll;
 }
 .modal-view.modal-view-show{
     bottom:0;
-    transition: 0.5s;
+    transition: 0.4s;
     opacity: 0.95;
+    /* display: block; */
 }
 
 .map-icon-location{
     position: absolute;
     left: 10px;
     bottom: 10px;
+    transition: 1s;
     z-index: 1000;
     width: 32px;
     height: 32px;
@@ -109,6 +170,9 @@
     text-align: center;
     vertical-align: middle;
     box-shadow: -1px 3px 10px 1px #444444;
+}
+.map-icon-location-up{
+    bottom: 93%;
 }
 .map-icon-location > i{
     font-size: 28px;
@@ -147,10 +211,15 @@
     /* font-weight: bold; */
 }
 
-.map-icon-bar > i.alarm-normal{
+i.alarm-normal{
     color: #cccccc;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 0 10px;
+    transition: 1s;
 }
-.map-icon-bar > i.alarm-color{
+i.alarm-color{
     animation: alarm 2s infinite linear;
     -moz-animation: alarm 2s infinite linear;
     -webkit-animation: alarm 2s infinite cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -239,11 +308,12 @@ a{
     bottom: 20px;
     left: 0px;
     z-index: 99;
-    width: 60px;
+    width: 50px;
     text-align: right;
     height: 40px;
-    transition: 1s;
-    background: rgb(145, 63, 63);
+    transition: 0.4s;
+    transition-timing-function: ease;
+    background: rgba(0, 0, 0, 0.8);
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.49);
 }
 .operate-btn i{
@@ -262,9 +332,17 @@ a{
 }
 
 .operate-panel{
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(5, 5, 5, 0.85);
+    width: 100%;
+    /* margin-left: -5%; */
+    /* box-shadow: 0px 1px 10px #fff; */
+    padding: 0;
     color: white;
     font-size: 30px;
+}
+.operate-panel .buttons .button,
+.operate-panel .title{
+    color: #FFF;
 }
 
 .slide-in-right {
@@ -317,11 +395,16 @@ a{
     padding: 15px 3px;
 }
 .action-list>div{
+    padding-top: 5px;
     width: 25%;
     text-align: center;
 }
 .action-list>div i{
     font-size: 40px;
+}
+.action-list>div .iconfont-bottom-text{
+    font-size: 12px;
+    padding-top: 10px;
 }
 .sensor-on{
     color: greenyellow;
@@ -330,17 +413,138 @@ a{
     color: greenyellow;
 }
 .sensor-data i{
-    font-size: 55px
+    font-size: 45px;
 }
 .setting-list .row{
     padding: 0;
 }
-.setting-list input{
-    border: 1px solid #000;
+.setting-list .sensor-data input{
+    border: 1px solid #bebebe;
+    border-radius: 5px;
     height: 30px !important;
-    padding: 0 !important;
+    padding: 0 5px;
+    width: 60px;
+    display: inline;
 }
 .setting-page input{
     width: 80px;
     padding-left: 5px;
 }
+.modal{
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    min-height: 0;
+    width: 100%;
+}
+.setting-list .toggle-small.item-toggle .toggle{
+    right: 44px
+}
+.setting-list div.item{
+    padding: 0;
+}
+.operate-btn-active{
+    opacity: 0;
+}
+.modal-backdrop, .modal-backdrop-bg{
+    background-color: rgba(0,0,0,.4);
+}
+.device-alarm{
+    background: #ffd0d0;
+}
+.device-state{
+    position: absolute;
+    right: 100px;
+    top: 22px;
+}
+.device-state .iconfont{
+    position: relative;
+    font-size: 34px;
+    line-height: 26px;
+}
+.device-state .iconfont>span{
+    position: absolute;
+    font-size: 12px;
+    right: -10px;
+    top: -10px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align:center;
+}
+.a-list .item{
+    overflow: inherit;
+    white-space: normal;
+}
+.device-offline{
+    /*     background: #e7e7e7; */
+}
+.device-offline .row a{
+    color: #9a9a9a
+}
+.device-offline .icon-zaixian,
+.device-offline .icon-ditu{
+    color: #bdbdbd !important
+}
+.sensor-list .item{
+    padding: 6px 16px;
+    line-height: 26px
+}
+.no-more{
+    text-align: center;
+    background: rgb(237, 237, 237);
+    color: #8d8c8c;
+    font-size: 0.88em;
+    padding: 2px 0;
+}
+.alarm-not-read p{
+    color: red;
+}
+.no-warp{
+    word-break: initial;
+    word-wrap: initial;
+    white-space: normal;
+}
+.a-red{
+    color: red;
+    float: right;
+    font-size: 12px;
+    line-height: 26px;
+    text-decoration:underline;
+    padding: 0;
+    margin-right: -10px;
+}
+.a-red:after{
+    content: ">>"
+}
+.platform-android ion-header {
+    padding-top: 20px;
+    /*background-color: color($colors, primary);*/
+}
+.color-online{
+    color: #4cba35;
+    font-size: 0.82em;
+}
+.device-offline .color-online{
+    color: red;
+}
+.alarm-alert-message{
+    position: absolute;
+    z-index: 99999;
+    top: 10px;
+    left: 60px;
+    color: white;
+    background: #f00;
+    border: 1px solid #c90000;
+    box-shadow: 0px 0px 15px red;
+    border-radius: 10px;
+    width: 180px;
+    height: 30px;
+    font-size: 18px;
+    line-height: 28px;
+    display: inline-block;
+    opacity: 0.85;
+}
+

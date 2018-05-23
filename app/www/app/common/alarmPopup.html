@@ -1,0 +1,11 @@
+<div class="list">
+    <div class="item" ng-repeat="item in CurAlarmItem.triggerContent.split('\n')" ng-show="item">
+        <div class="no-warp">{{item}}</div>
+    </div>
+    <div class="item" ng-show="CurAlarmItem.triggerVal">
+        <div class="no-warp">触发数值：{{CurAlarmItem.triggerVal}}</div>
+    </div>
+    <div class="item">
+        <div class="no-warp">{{CurAlarmItem.IsRead?"已读":"未读"}}</div>
+    </div>
+</div>

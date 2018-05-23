@@ -324,6 +324,60 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.permissions"
         ]
+    },
+    {
+        "file": "plugins/jpush-phonegap-plugin/www/JPushPlugin.js",
+        "id": "jpush-phonegap-plugin.JPushPlugin",
+        "pluginId": "jpush-phonegap-plugin",
+        "clobbers": [
+            "JPush"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/www/badge.js",
+        "id": "cordova-plugin-badge.Badge",
+        "pluginId": "cordova-plugin-badge",
+        "clobbers": [
+            "cordova.plugins.notification.badge"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/src/browser/favico.min.js",
+        "id": "cordova-plugin-badge.Badge.Favico",
+        "pluginId": "cordova-plugin-badge",
+        "clobbers": [
+            "cordova.plugins.notification.badge.Favico"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/src/browser/BadgeProxy.js",
+        "id": "cordova-plugin-badge.Badge.Proxy",
+        "pluginId": "cordova-plugin-badge",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+        "id": "cordova-plugin-local-notification.LocalNotification",
+        "pluginId": "cordova-plugin-local-notification",
+        "clobbers": [
+            "cordova.plugins.notification.local"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-vibration/src/browser/Vibration.js",
+        "id": "cordova-plugin-vibration.Vibration",
+        "pluginId": "cordova-plugin-vibration",
+        "merges": [
+            "navigator"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+        "id": "cordova-plugin-vibration.notification",
+        "pluginId": "cordova-plugin-vibration",
+        "merges": [
+            "navigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -343,7 +397,12 @@ module.exports.metadata =
     "cordova-plugin-file-opener2": "2.0.19",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-network-information": "2.0.1",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-jcore": "1.2.0",
+    "jpush-phonegap-plugin": "3.4.1",
+    "cordova-plugin-badge": "0.8.7",
+    "cordova-plugin-local-notification": "0.9.0-beta.3",
+    "cordova-plugin-vibration": "3.1.0"
 }
 // BOTTOM OF METADATA
 });

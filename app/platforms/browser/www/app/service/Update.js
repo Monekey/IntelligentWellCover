@@ -35,7 +35,7 @@ angular.module("app")
                             //判断网络信息我们去执行相应的操作，这里操作简单我就不做注解了
                             if (type === 'wifi') {
                                 $ionicPopup.confirm({
-                                    title: '发现新版本'+ $rootScope.AppInfo.path + ",大小："+(size/1024/1024).toFixed(2) + "M",
+                                    title: '发现新版本'+ $rootScope.AppInfo.path + ",大小："+($rootScope.AppInfo.size/1024/1024).toFixed(2) + "M",
                                     template: '<div><p ng-repeat="updateInfo in AppInfo.updateList">{{updateInfo}}</p></div>',
                                     cancelText: '取消',
                                     okText: '升级'
@@ -46,7 +46,7 @@ angular.module("app")
                                 });
                             } else {
                                 $ionicPopup.confirm({
-                                    title: '发现新版本'+ $rootScope.AppInfo.path + ",大小："+(size/1024/1024).toFixed(2) + "M。建议您在WIFI条件下进行升级",
+                                    title: '发现新版本'+ $rootScope.AppInfo.path + ",大小："+($rootScope.AppInfo.size/1024/1024).toFixed(2) + "M。建议您在WIFI条件下进行升级",
                                     template: '<div><p ng-repeat="updateInfo in AppInfo.updateList">{{updateInfo}}</p></div>',
                                     cancelText: '取消',
                                     okText: '升级'

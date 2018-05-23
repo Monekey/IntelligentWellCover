@@ -2,19 +2,25 @@
     <!--<a ng-click="goDeviceDetail(device)" ng-bind="device.deviceName"></a>-->
     <!--<div ng-bind="device.deviceNo"></div>-->
     <!--</div>-->
-    <ion-scroll>
-
-    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
-    <div class="list device-list">
-        <div class="item item-button-right" ng-class="{'device-onLine': device.isLine}" ng-repeat="device in dList | orderBy:'distance'">
+    <!--<ion-scroll scrollbar-y="true">-->
+    <ion-list class="list device-list">
+        <ion-item class="item item-button-right" ng-class="{'device-offline': !device.isLine,'device-onLine': device.isLine,'device-alarm':device.NewAlarmCount}"
+                  ng-repeat="device in dList | orderBy:'distance'">
             <div ng-click="goDeviceDetail(device)">
                 <div class="row">
                     <a ng-bind="::device.deviceName"></a>
-                    <i class="iconfont icon-zaixian device-is-line" ></i>
+                    <!--<i class="iconfont icon-zaixian device-is-line" ></i>-->
                 </div>
                 <div class="row">
-                    <span class="device-no"  ng-bind="::device.deviceNo"></span>
+                    <!--<span class="device-no"  ng-bind="::device.deviceNo"></span>-->
+                    <span class="color-online">{{device.isLine?"在线":"离线"}}</span>
                 </div>
+            </div>
+            <div class="device-state">
+                <i ng-show="device.aList.length" class='iconfont icon-baojing alarm-normal' ng-class='{"alarm-color": device.NewAlarmCount}' ng-click='alarmDetailModal(device.aList)'>
+                    <span>{{device.NewAlarmCount?device.NewAlarmCount:""}}</span>
+                </i>
+                <i class="iconfont icon-zaixian device-is-line" ></i>
             </div>
             <div class="device-list-location">
                 <button class="button button-icon" ng-click="$event.preventDefault();panTo(device)">
@@ -22,7 +28,9 @@
                 </button>
                 <span>{{device.distance|distanceNum}}</span>
             </div>
-        </div>
-    </div>
-    </ion-scroll>
+        </ion-item>
+        <ion-item class="no-more">已经到底啦</ion-item>
+    </ion-list>
+    <!--</ion-scroll>-->
+
 

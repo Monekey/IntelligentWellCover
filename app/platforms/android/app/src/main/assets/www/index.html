@@ -29,17 +29,25 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
         <meta charset="UTF-8">
-        <title>Ionic App</title>
+        <title>旭东智慧管廊</title>
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scal e=1.0, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <link rel="stylesheet" type="text/css" href="lib/ionic/ionic.min.css">
         <!--<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">-->
-        <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_641709_l58zne1d8b5u3di.css">
+        <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_641709_zry0rmc81yfu5wmi.css">
         <link rel="stylesheet" type="text/css" href="lib/angular-toggle-switch/angular-toggle-switch.css">
         <link rel="stylesheet" type="text/css" href="lib/angular-toggle-switch/angular-toggle-switch-bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script src="js/vconsole.min.js"></script>
+        <script>
+            var vConsole = new VConsole({
+                onReady: function(){
+                    vConsole.hideSwitch();
+                }
+            });
+        </script>
     </head>
     <body ng-controller="homeCtrl">
         <ui-view></ui-view>
@@ -72,6 +80,7 @@
     <script type="text/javascript" src="app/components/deviceDetail.js"></script>
     <script type="text/javascript" src="app/components/deviceList.js"></script>
     <script type="text/javascript" src="app/components/user.js"></script>
+    <script type="text/javascript" src="app/components/alarm.js"></script>
     <script type="text/javascript" src="js/Toast.js"></script>
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.4&key=329a6994a79afafb0d24398f58448f93"></script>
     <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>

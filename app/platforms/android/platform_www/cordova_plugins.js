@@ -300,6 +300,30 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.permissions"
     ]
+  },
+  {
+    "id": "jpush-phonegap-plugin.JPushPlugin",
+    "file": "plugins/jpush-phonegap-plugin/www/JPushPlugin.js",
+    "pluginId": "jpush-phonegap-plugin",
+    "clobbers": [
+      "JPush"
+    ]
+  },
+  {
+    "id": "cordova-plugin-badge.Badge",
+    "file": "plugins/cordova-plugin-badge/www/badge.js",
+    "pluginId": "cordova-plugin-badge",
+    "clobbers": [
+      "cordova.plugins.notification.badge"
+    ]
+  },
+  {
+    "id": "cordova-plugin-local-notification.LocalNotification",
+    "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+    "pluginId": "cordova-plugin-local-notification",
+    "clobbers": [
+      "cordova.plugins.notification.local"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -319,7 +343,12 @@ module.exports.metadata =
   "cordova-plugin-file-opener2": "2.0.19",
   "ionic-plugin-keyboard": "2.2.1",
   "cordova-plugin-network-information": "2.0.1",
-  "cordova-plugin-android-permissions": "1.0.0"
+  "cordova-plugin-android-permissions": "1.0.0",
+  "cordova-plugin-jcore": "1.2.0",
+  "jpush-phonegap-plugin": "3.4.1",
+  "cordova-plugin-badge": "0.8.7",
+  "cordova-plugin-local-notification": "0.9.0-beta.3",
+  "cordova-plugin-vibration": "3.1.0"
 };
 // BOTTOM OF METADATA
 });
