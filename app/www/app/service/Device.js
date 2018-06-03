@@ -476,9 +476,13 @@ angular.module("app")
             });
         };
     }
+    function ClearAlarmCache(){
+        $window.localStorage.setItem("ReadAlarmHistoryIdList", JSON.stringify([]));
+    }
     function TestTriggerAlarm(){
         var device = deviceList[0];
         var alarmItem = angular.copy(alarmsHistory[1][0]);
+        alarmItem.IsRead = false;
         alarmItem.triggerDate = new Date();
         alarmItem.triggerContent = "设备："+device.deviceName+" 测试传感器数值异常";
         device.aList.push(alarmItem);
@@ -638,6 +642,7 @@ angular.module("app")
         },
         GetAlarms: GetAlarms,
         TestTriggerAlarm: TestTriggerAlarm,
+        ClearAlarmCache: ClearAlarmCache,
         GetAlarmsHistory: GetAlarmsHistory,
         GetAlarmsHistoryCache: function(){
             return alarmsHistory;
@@ -697,7 +702,7 @@ angular.module("app")
                                 var num = device.NewAlarmCount;
                                 var infoWindow = new SimpleInfoWindow({
                                     infoTitle: '<strong>'+device.deviceName+'</strong>',
-                                    infoBody: '<p class="my-desc"><strong>'+device.deviceNo+'</strong> <br/>' +
+                                    infoBody: '<p class="my-desc"><strong>'+(device.isLine?"在线":"离线")+'</strong> <br/>' +
                                     ((num)?'<strong style="color:red">'+num+'条报警记录</strong> <br/>':'') +
                                     '<a href="#/main/deviceDetail?deviceNo='+device.deviceNo+'&deviceName='+device.deviceName+'&openAlarm=true">详情>></a></p>',
                                     //基点指向marker的头部位置

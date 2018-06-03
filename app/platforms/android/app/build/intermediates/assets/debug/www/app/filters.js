@@ -12,10 +12,13 @@ angular.module("app")
 })
 .filter('distanceNum', function(config, $filter){
     return function(m){
-        if(!m){
+        if(!m && m!==0){
             return '正在计算距离'
         }
-        if(m>0 && m<1000){
+        if(m<=20){
+            return '<20米';
+        }
+        if(m>20 && m<1000){
             return $filter('number')(m, 0) + '米';
         }
         if(m>=1000 && m < (1000*1000)){

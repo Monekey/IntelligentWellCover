@@ -1,4 +1,4 @@
-io.cordova.hellocordova
+io.cuiqimeng.xdzhgl
 int attr coordinatorLayoutStyle 0x7f010000
 int attr font 0x7f010001
 int attr fontProviderAuthority 0x7f010002

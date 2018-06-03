@@ -8,7 +8,7 @@
             <!--<a class="button button-icon icon ion-ios-location" ng-click="panToLocation()"></a>-->
         <!--</div>-->
 <!--<ion-tabs class="tabs-bottom"></ion-tabs>-->
-<ion-content style="overflow: hidden;">
+<ion-content style="overflow: hidden;" delegate-handle="dashboard">
     <a-map></a-map>
     <div class="modal-view" ng-class="{'modal-view-show': !state.is('app.main')}">
         <ui-view></ui-view>

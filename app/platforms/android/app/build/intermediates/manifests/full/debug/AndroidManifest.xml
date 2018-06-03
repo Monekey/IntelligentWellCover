@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.cordova.hellocordova"
+    package="io.cuiqimeng.xdzhgl"
     android:hardwareAccelerated="true"
-    android:versionCode="10007"
-    android:versionName="1.0.7" >
+    android:versionCode="10008"
+    android:versionName="1.0.8" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -71,7 +71,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true" >
         <activity
-            android:name="io.cordova.hellocordova.MainActivity"
+            android:name="io.cuiqimeng.xdzhgl.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="@string/activity_name"
             android:launchMode="singleTop"
@@ -86,7 +86,7 @@
 
         <provider
             android:name="io.github.pwlin.cordova.plugins.fileopener2.FileProvider"
-            android:authorities="io.cordova.hellocordova.opener.provider"
+            android:authorities="io.cuiqimeng.xdzhgl.opener.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -198,7 +198,7 @@
 
         <provider
             android:name="de.appplant.cordova.plugin.notification.util.AssetProvider"
-            android:authorities="io.cordova.hellocordova.provider"
+            android:authorities="io.cuiqimeng.xdzhgl.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

@@ -42,7 +42,7 @@ INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidMan
 INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:1-104:12
 INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:1-104:12
 	package
-		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:102-135
+		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:102-131
 		INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -52,7 +52,7 @@ INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidMan
 	android:hardwareAccelerated
 		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:136-194
+		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:132-190
 	android:versionCode
 		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
 		INJECTED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml
@@ -85,7 +85,7 @@ ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManife
 		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
 	android:icon
 		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
-activity#io.cordova.hellocordova.MainActivity
+activity#io.cuiqimeng.xdzhgl.MainActivity
 ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
 	android:label
 		ADDED from E:\projects\andriod1\app\platforms\android\app\src\main\AndroidManifest.xml:6:97-134

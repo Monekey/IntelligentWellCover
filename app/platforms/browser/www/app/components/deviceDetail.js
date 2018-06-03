@@ -97,7 +97,7 @@ angular.module('app')
                 return;
             }
             var defered = $q.defer();
-            var p1 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 256);
+            var p1 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);
             // var p2 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode);
             p1.then(function(){
                 DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
@@ -122,13 +122,13 @@ angular.module('app')
             // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], '1')
             // .then(function(data){
             //     console.log('允许远程控制成功');
-            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 256);//256改成1
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);//1改成1
             DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
             // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.FENGMINGQI], '1')
             // .then(function(data){
             //     console.log("蜂鸣器响应成功")
             // });
-            DeviceService.ControlSwitchValue($scope.Device.deviceNo, id, 256)
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, id, 1)
             .then(function(data){
                 console.log(data)
             })
@@ -138,7 +138,7 @@ angular.module('app')
             console.log('cancel');
             $scope.triggerHoldOn_up = false;
             $scope.triggerHoldOn_down = false;
-            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.JINGGAITINGZHU], 256)
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.JINGGAITINGZHU], 1)
                 .then(function(data){
                     console.log('停了')
                 })

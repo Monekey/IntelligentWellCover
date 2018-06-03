@@ -31,6 +31,9 @@ angular.module("app")
         $scope.TestTriggerAlarm = function(){
             DeviceService.TestTriggerAlarm();
         };
+        $scope.ClearAlarmCache = function(){
+
+        }
         $scope.OpenMoreSetting = function(){
            $ionicPopup.prompt({
                 title: '验证管理员身份',

@@ -10,6 +10,7 @@ angular.module("app")
     })
     .controller('settingCtrl', function($scope, config, DefaultConfig, Widget, $ionicPopup, $rootScope, DeviceService){
         $scope.config = config;
+        $scope.ShowVConsole = false;
         $scope.reset = function(){
             $scope.config = config = DefaultConfig;
         }
@@ -22,7 +23,7 @@ angular.module("app")
             window.localStorage.setItem("APP_CONFIG", JSON.stringify(config));
         });
         $scope.changeVConsole = function(){
-            if(config.ShowVConsole){
+            if($scope.ShowVConsole){
                 vConsole.showSwitch();
             }else {
                 vConsole.hideSwitch();
@@ -31,6 +32,9 @@ angular.module("app")
         $scope.TestTriggerAlarm = function(){
             DeviceService.TestTriggerAlarm();
         };
+        $scope.ClearAlarmCache = function(){
+
+        }
         $scope.OpenMoreSetting = function(){
            $ionicPopup.prompt({
                 title: '验证管理员身份',

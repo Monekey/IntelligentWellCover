@@ -433,7 +433,7 @@ angular.module("app")
         }
     }
     function TriggerAlarm(alarmItem){
-        console.log(alarmItem.triggerDate+ ":" +alarmItem.triggerContent);
+        // console.log(alarmItem.triggerDate+ ":" +alarmItem.triggerContent);
         angular.forEach(deviceList, function(device){
             if(device.deviceId == alarmItem.deviceId){
                 var flag = true;
@@ -475,6 +475,31 @@ angular.module("app")
                 data: {alarmItem: alarmItem}
             });
         };
+    }
+    function ClearAlarmCache(){
+        $window.localStorage.setItem("ReadAlarmHistoryIdList", JSON.stringify([]));
+    }
+    function TestTriggerAlarm(){
+        var device = deviceList[0];
+        var alarmItem = angular.copy(alarmsHistory[1][0]);
+        alarmItem.IsRead = false;
+        alarmItem.triggerDate = new Date();
+        alarmItem.triggerContent = "设备："+device.deviceName+" 测试传感器数值异常";
+        device.aList.push(alarmItem);
+        device.NewAlarmCount++;
+        device.isAlarm = true;
+        EventBus.Publish("seeAll");
+        $rootScope.TotalAlarms.push(alarmItem);
+        createMarker(device, map, true);
+        cordova.plugins.notification.local.schedule({
+            id: alarmItem.id,
+            title: $filter('date')(alarmItem.triggerDate, "HH:mm:ss")+alarmItem.deviceName,
+            text: alarmItem.triggerContent,
+            // at: new Date(),
+            foreground: true,
+            icon: "file://img/icon.png",
+            data: {alarmItem: alarmItem}
+        });
     }
     //监听点击事件
     cordova.plugins.notification.local.on('click', function (notification) {
@@ -616,6 +641,8 @@ angular.module("app")
             return qmHttp.Post("device/queryByDeviceNo.html", param, {tracker: tracker})
         },
         GetAlarms: GetAlarms,
+        TestTriggerAlarm: TestTriggerAlarm,
+        ClearAlarmCache: ClearAlarmCache,
         GetAlarmsHistory: GetAlarmsHistory,
         GetAlarmsHistoryCache: function(){
             return alarmsHistory;
@@ -675,7 +702,7 @@ angular.module("app")
                                 var num = device.NewAlarmCount;
                                 var infoWindow = new SimpleInfoWindow({
                                     infoTitle: '<strong>'+device.deviceName+'</strong>',
-                                    infoBody: '<p class="my-desc"><strong>'+device.deviceNo+'</strong> <br/>' +
+                                    infoBody: '<p class="my-desc"><strong>'+(device.isLine?"在线":"离线")+'</strong> <br/>' +
                                     ((num)?'<strong style="color:red">'+num+'条报警记录</strong> <br/>':'') +
                                     '<a href="#/main/deviceDetail?deviceNo='+device.deviceNo+'&deviceName='+device.deviceName+'&openAlarm=true">详情>></a></p>',
                                     //基点指向marker的头部位置
@@ -738,6 +765,18 @@ angular.module("app")
                 flagCode: UserService.GetUserFlagCode()
             }
             return qmHttp.Post("device/queryLastDtByDevNo.html", params, {tracker: true})
+        },
+        UpdateDevice: function(device, props){
+            var params = {
+                deviceNo: device.deviceNo,
+                deviceId: device.deviceId,
+                // deviceName: "测试修改接口1",
+                userApiKey: UserService.GetUserUserApiKey(),
+                flagCode: UserService.GetUserFlagCode(),
+                sign: UserService.GetSign()
+            };
+            angular.extend(params, props);
+            return qmHttp.Post("device/updateDevice.html", params, {tracker: true})
         },
 
     }

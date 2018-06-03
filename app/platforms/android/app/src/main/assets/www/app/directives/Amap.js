@@ -2,7 +2,7 @@
  * Created by 崔启蒙 on 2018/4/19.
  */
 angular.module("app")
-    .directive("aMap", function($interval, qmHttp, UserService, Widget, DeviceService, $cordovaToast, EventBus, $state, config){
+    .directive("aMap", function($interval, qmHttp, UserService, Widget, DeviceService, $cordovaToast, EventBus, $state, config, $rootScope){
         return {
             restrict: "AE",
             templateUrl: "app/directives/Amap.html",
@@ -118,8 +118,9 @@ angular.module("app")
                 });
                 function onComplete(e) {
                     currLocation=e;
+                    $rootScope.CurrPosition = e.position;
                     //Circle.setCenter(e.position)
-                    console.log(e)
+                    console.log(e);
 
                     if(scope.CenterChanged === false){
                         if(_firstLoading){

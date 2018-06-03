@@ -28,7 +28,7 @@ angular.module('app')
             $scope.CurAlarmList = $scope.Device.aList;
             $scope.alarmDetailM.show();
         };
-        $scope.closeModal = function() {
+        $scope.closeAlarmsDetailModal = function() {
             $scope.alarmDetailM.hide();
         };
         function getCurrentDeviceData(DeviceList) {
@@ -54,8 +54,7 @@ angular.module('app')
                         default: break;
                     }
                 }else{
-                    console.log("此传感器未配置");
-                    console.log(sensor)
+                    console.log(sensor.sensorName+",此传感器未配置");
                 }
             });
             if(OperateSensorConfig['现场最大操作距离'].sensor && OperateSensorConfig['现场最大操作距离'].sensor.value){
@@ -108,7 +107,7 @@ angular.module('app')
             });
             return defered.promise;
             // return $q.all([p1, p2])
-        }
+        };
         $scope.ChangeSwitch = function (flag) {
             if(!CheckOpDistanceValid()){
                 return;
@@ -223,6 +222,59 @@ angular.module('app')
                     })
             });
         }
+        $scope.getCurrentPosition=function(){
+            $scope.Position = {
+                lat: $rootScope.CurrPosition?$rootScope.CurrPosition.lat:"",
+                lng: $rootScope.CurrPosition?$rootScope.CurrPosition.lng:""
+            };
+        }
+        $scope.OpenDevicePositionModal = function(){
+            // $scope.getCurrentPosition();
+            $scope.Position = {
+                lat: parseFloat($scope.Device.deviceLat),
+                lng: parseFloat($scope.Device.deviceLng)
+            };
+            var myPopup = $ionicPopup.show({
+                template: '<div class="list">' +
+                '<div class="item">纬度(lat)：<input class="modal-input" type="number" ng-model="Position.lat">' +
+                '<i style="font-size: 32px;position: absolute;right: 7px;top: 17px;color: #660000;" class="iconfont icon-dingwei3" ng-click="getCurrentPosition()">' +
+                '<span style="font-size: 12px; position: absolute;bottom: -20px;left: -10px;">当前位置<span></span></span></i>' +
+                '</div>' +
+                '<div class="item">经度(lng)：<input class="modal-input" type="number" ng-model="Position.lng">' +
+                '<br/><p ng-show="DevicePositionModalINVALID" style="color: red">值不能为空</p></div>' +
+                '</div>',
+                title: '请输入新的经纬度',
+                // subTitle: 'Please use normal things',
+                scope: $scope,
+                buttons: [
+                    { text: '取消',
+                        onTap: function(e) {
+                            return "close";
+                        }},
+                    {
+                        text: '<b>修改</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            if (!$scope.Position.lat || !$scope.Position.lng) {
+                                $scope.DevicePositionModalINVALID = true;
+                                e.preventDefault();
+                            }
+                            return $scope.Position;
+                        }
+                    }
+                ]
+            });
+            myPopup.then(function(res) {
+                if(res==="close"){return};
+                $scope.Position.lat = String($scope.Position.lat);
+                $scope.Position.lng = String($scope.Position.lng);
+                DeviceService.UpdateDevice($scope.Device, $scope.Position, res)
+                    .then(function(){
+                        $cordovaToast.show("经纬度设置成功！请等待数据同步", 'short', 'bottom');
+                    })
+            });
+        }
+
         $ionicModal.fromTemplateUrl('operateModal', {
             scope: $scope,
             animation: 'slide-in-left',
@@ -271,6 +323,7 @@ angular.module('app')
                 //     }
                 // ]
             }).then(function(res) {
+                if(!res){return}
                 if(res == '18430'){
                     Widget.ShowAlert('身份验证成功');
                     $scope.openSettingModal();
@@ -294,6 +347,7 @@ angular.module('app')
             $scope.CancelSwitch();
             $scope.closeSettingModal();
             $scope.closeModal();
+            $scope.closeAlarmsDetailModal();
         })
     })
 .directive("ngOnhold", function($swipe, $parse, $interval){

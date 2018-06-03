@@ -12,8 +12,8 @@ angular.module("app")
 })
 .filter('distanceNum', function(config, $filter){
     return function(m){
-        if(!m && m!==0){
-            return '正在计算距离'
+        if(!m && m!='0'){
+            return '-'
         }
         if(m<=20){
             return '<20米';

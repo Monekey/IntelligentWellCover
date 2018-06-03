@@ -149,6 +149,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col-50" style="line-height: 55px;padding-left: 50px;">
+                            <span>纬度、经度设置</span>
+                        </div>
+                        <div class="col sensor-data">
+                            <input readonly ng-model="Device.deviceLat" ng-click="OpenDevicePositionModal()">
+                            <input readonly ng-model="Device.deviceLng" ng-click="OpenDevicePositionModal()">
+                        </div>
+                    </div>
+                </div>
             </div>
         </ion-content>
     </ion-modal-view>

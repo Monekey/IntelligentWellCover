@@ -6,13 +6,16 @@
         </div>
         <div ng-show="showMoreSetting">
             <div>
-                <ion-toggle ng-model="config.ShowVConsole" ng-change="changeVConsole()"
+                <ion-toggle ng-model="ShowVConsole" ng-change="changeVConsole()"
                             toggle-class="toggle-calm">
                     显示调试面板
                 </ion-toggle>
             </div>
             <div class="item">
                 <button class="button" ng-click="TestTriggerAlarm()">测试报警</button>
+            </div>
+            <div class="item">
+                <button class="button" ng-click="ClearAlarmCache()">重置警报</button>
             </div>
         </div>
 

@@ -25,7 +25,7 @@ angular.module("app")
         $scope.CurAlarmList = list;
         $scope.modal.show();
     };
-    $scope.closeModal = function() {
+    $scope.closeAlarmsDetailModal = function() {
         $scope.modal.hide();
     };
     // $scope.$watch(function () {

@@ -6,7 +6,16 @@ angular.module('app')
         $scope.state = $state;
         $scope.openSettingModal = function(){
             EventBus.Publish('OpenSettingModal');
-        }
+        };
+        var unwatch = $scope.$watch(function(){
+            return $rootScope.TotalAlarms.length
+        }, function(){
+            $scope.AlarmContent = "";
+            angular.forEach($rootScope.TotalAlarms, function(item, index){
+                $scope.AlarmContent+=index+1;
+                $scope.AlarmContent+="."+item.triggerContent+" ";
+            })
+        });
         // $scope.Router = Router;
         // $scope.ModalViewShow = false;
         // $scope.PopupModalViewPage = function(ModalViewContent, params){
@@ -37,4 +46,7 @@ angular.module('app')
         $scope.panToLocation = function(){
             EventBus.Publish('panToLocation')
         }
+        $scope.$on("$destroy", function(){
+            unwatch();
+        })
     });

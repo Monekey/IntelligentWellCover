@@ -48,7 +48,7 @@
     font-size: 30px;
 }
 .sensor-operate-bar .iconfont.icon-tubiao104{
-    /* margin-left: 1px; */
+    margin-left: -12px;
     /* margin-top: 8px; */
 }
 .sensor-operate-bar .iconfont{
@@ -421,7 +421,7 @@ a{
 .setting-list .sensor-data input{
     border: 1px solid #bebebe;
     border-radius: 5px;
-    height: 30px !important;
+    height: 36px !important;
     padding: 0 5px;
     width: 60px;
     display: inline;
@@ -548,3 +548,12 @@ a{
     opacity: 0.85;
 }
 
+.popup-body .modal-input{
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    height: 36px !important;
+    padding: 0 5px;
+    margin-left: 10px;
+    width: 80px;
+    display: inline;
+}

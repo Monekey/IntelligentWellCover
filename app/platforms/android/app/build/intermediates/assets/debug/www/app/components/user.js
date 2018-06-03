@@ -8,7 +8,7 @@ angular.module("app")
             UpdateService.CheckUpdate('popup');
         }
     })
-    .controller('settingCtrl', function($scope, config, DefaultConfig, Widget, $ionicPopup, $rootScope){
+    .controller('settingCtrl', function($scope, config, DefaultConfig, Widget, $ionicPopup, $rootScope, DeviceService){
         $scope.config = config;
         $scope.reset = function(){
             $scope.config = config = DefaultConfig;
@@ -28,6 +28,12 @@ angular.module("app")
                 vConsole.hideSwitch();
             }
         };
+        $scope.TestTriggerAlarm = function(){
+            DeviceService.TestTriggerAlarm();
+        };
+        $scope.ClearAlarmCache = function(){
+
+        }
         $scope.OpenMoreSetting = function(){
            $ionicPopup.prompt({
                 title: '验证管理员身份',
