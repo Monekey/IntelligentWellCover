@@ -17,6 +17,9 @@ angular.module("app")
         $scope.checkEmpty = function (key) {
             if($scope.config[key] === ""){
                 $scope.config[key] = DefaultConfig[key]
+            }else{
+                console.log("设置成功，有些设置可能在重启软件后才会生效。");
+                Widget.ShowAlert('设置成功，有些设置可能在重启软件后才会生效。')
             }
         };
         $scope.$on("$destroy", function(){

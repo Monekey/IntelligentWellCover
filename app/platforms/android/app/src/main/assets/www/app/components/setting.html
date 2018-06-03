@@ -6,7 +6,7 @@
         </div>
         <div ng-show="showMoreSetting">
             <div>
-                <ion-toggle ng-model="config.ShowVConsole" ng-change="changeVConsole()"
+                <ion-toggle ng-model="ShowVConsole" ng-change="changeVConsole()"
                             toggle-class="toggle-calm">
                     显示调试面板
                 </ion-toggle>
@@ -16,6 +16,10 @@
             </div>
             <div class="item">
                 <button class="button" ng-click="ClearAlarmCache()">重置警报</button>
+            </div>
+            <div class="item item-icon-left">
+                上升下降操作间隔（ms）：
+                <input ng-model="config.INTERVAL_TIME" ng-blur="checkEmpty('INTERVAL_TIME')">
             </div>
         </div>
 

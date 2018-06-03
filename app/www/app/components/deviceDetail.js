@@ -350,11 +350,11 @@ angular.module('app')
             $scope.closeAlarmsDetailModal();
         })
     })
-.directive("ngOnhold", function($swipe, $parse, $interval){
+.directive("ngOnhold", function($swipe, $parse, $interval, config){
     //长按触发事件需要的时间
     var ON_HOLD_TIMEMS = 500;
     //定时器间隔
-    var INTERVAL_TIME = 1500;
+    var INTERVAL_TIME = config.INTERVAL_TIME;
 
     return function(scope, element, attr) {
 

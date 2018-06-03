@@ -10,7 +10,8 @@ angular.module('app')
         NativeWatchPosition: true, //随意
         DefaultTimescale: 20000, //20000
         VisibleMeter: 20, //20
-        VisibleMeter_Valid: false //true
+        VisibleMeter_Valid: false, //true
+        INTERVAL_TIME: 2000
     })
     .value('config', {
         BASEURL: "https://api.dtuip.com/qy/",
@@ -21,5 +22,6 @@ angular.module('app')
         DefaultTimescale: 20000, //20000
         VisibleMeter: 20, //20
         VisibleMeter_Valid: false, //true
-        ShowVConsole: false
+        ShowVConsole: false,
+        INTERVAL_TIME: 2000
     });

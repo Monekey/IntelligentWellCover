@@ -17,6 +17,10 @@
             <div class="item">
                 <button class="button" ng-click="ClearAlarmCache()">重置警报</button>
             </div>
+            <div class="item item-icon-left">
+                上升下降操作间隔（ms）：
+                <input ng-model="config.INTERVAL_TIME" ng-blur="checkEmpty('INTERVAL_TIME')">
+            </div>
         </div>
 
         <a ng-hide="showMoreSetting" class="item" ng-click="OpenMoreSetting()">
