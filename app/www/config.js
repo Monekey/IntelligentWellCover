@@ -23,5 +23,6 @@ angular.module('app')
         VisibleMeter: 20, //20
         VisibleMeter_Valid: false, //true
         ShowVConsole: false,
-        INTERVAL_TIME: 2000
+        INTERVAL_TIME: 2000,
+        上升下降每次发送三个接口: false
     });

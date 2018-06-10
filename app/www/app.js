@@ -63,6 +63,7 @@ angular.module('app', ['ionic', 'ui.router','ngTouch', 'app.service', 'ngCordova
             firstLogin: true,
             userKey: ""
         };
+        $rootScope.intervalObj = null;
         $rootScope.Page = {};
         $rootScope.GOBACK = function(){
             // $ionicHistory.goBack()

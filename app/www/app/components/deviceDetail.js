@@ -122,8 +122,10 @@ angular.module('app')
             // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], '1')
             // .then(function(data){
             //     console.log('允许远程控制成功');
-            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);//1改成1
-            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
+            if(config.上升下降每次发送三个接口){
+                DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);//1改成1
+                DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
+            }
             // DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.FENGMINGQI], '1')
             // .then(function(data){
             //     console.log("蜂鸣器响应成功")
@@ -350,7 +352,7 @@ angular.module('app')
             $scope.closeAlarmsDetailModal();
         })
     })
-.directive("ngOnhold", function($swipe, $parse, $interval, config){
+.directive("ngOnhold", function($swipe, $parse, $interval, config, $rootScope, $timeout){
     //长按触发事件需要的时间
     var ON_HOLD_TIMEMS = 500;
     //定时器间隔
@@ -362,7 +364,8 @@ angular.module('app')
         var onholdHandler = $parse(attr["ngOnhold"]);
         var onholdEndHandler = $parse(attr["ngOnholdEnd"]);
         var run;
-        var intervalObj;
+        // var intervalObj = $rootScope.intervalObj;
+        $interval.cancel($rootScope.intervalObj);
 
         $swipe.bind(element, {
             'start': function(coords, event) {
@@ -376,9 +379,14 @@ angular.module('app')
                     }
                     onholdStratHandler(scope, {$event: event}).then(function() {
                         onholdHandler(scope, {$event: event});
-                        intervalObj = $interval(function(){
-                            element.triggerHandler("onhold");
-                            onholdHandler(scope, {$event: event});
+                        $interval.cancel($rootScope.intervalObj);
+                        $rootScope.intervalObj = $interval(function(){
+                            if(element.hasClass("activated")){
+                                element.triggerHandler("onhold");
+                                onholdHandler(scope, {$event: event});
+                            }else{
+                                $interval.cancel($rootScope.intervalObj);
+                            }
                         }, INTERVAL_TIME);
                     });
                 }, ON_HOLD_TIMEMS);
@@ -387,19 +395,19 @@ angular.module('app')
                 if(run){
                     console.log("cancel");
                     clearTimeout(run);
-                    $interval.cancel(intervalObj);
+                    $interval.cancel($rootScope.intervalObj);
                 }
             },
             'move' : function(event){
                 if(run){
                     // console.log("moved")
                     // clearTimeout(run)
-                    // $interval.cancel(intervalObj);
+                    // $interval.cancel($rootScope.intervalObj);
                 }
             },
             'end': function(coords, event) {
                 $(element).remove('hold-start');
-                $interval.cancel(intervalObj);
+                $interval.cancel($rootScope.intervalObj);
                 // if(run){
                 //     clearTimeout(run);
                 //     scope.$apply(function() {
@@ -412,5 +420,8 @@ angular.module('app')
                 });
             }
         }, ['touch', 'mouse']);
+        scope.$on("$destroy", function(){
+            $interval.cancel($rootScope.intervalObj);
+        })
     }
 });

@@ -37,7 +37,7 @@ angular.module("app")
         };
         $scope.ClearAlarmCache = function(){
 
-        }
+        };
         $scope.OpenMoreSetting = function(){
            $ionicPopup.prompt({
                 title: '验证管理员身份',
