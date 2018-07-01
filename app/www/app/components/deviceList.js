@@ -6,7 +6,6 @@ angular.module("app")
     $scope.dList = DeviceService.GetDeviceList();
     $scope.DeviceService = DeviceService;
     var de = $scope.$on("UpdateDeviceList", function (ev, data) {
-        console.log(6666666666);
         $timeout(function(){
             $scope.dList = data;
         })

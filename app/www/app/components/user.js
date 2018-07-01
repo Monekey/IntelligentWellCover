@@ -32,6 +32,9 @@ angular.module("app")
                 vConsole.hideSwitch();
             }
         };
+        $scope.changeSingleMode = function () {
+            // config.SingleMode =! config.SingleMode
+        };
         $scope.TestTriggerAlarm = function(){
             DeviceService.TestTriggerAlarm();
         };

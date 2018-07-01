@@ -11,8 +11,8 @@
 <ion-content style="overflow: hidden;" delegate-handle="dashboard">
     <a-map></a-map>
     <div class="modal-view" ng-class="{'modal-view-show': !state.is('app.main')}">
-        <ui-view></ui-view>
-    </div>
+    <ui-view></ui-view>
+</div>
     <div class="alarm-alert-message" ng-if="TotalAlarms.length">
         <marquee>
             {{AlarmContent}}

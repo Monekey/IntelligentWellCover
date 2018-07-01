@@ -25,9 +25,9 @@ angular.module('app')
                  */
                 // document.addEventListener("deviceready", function () {
                 console.log("验证码错误");
-                    $cordovaToast.show("验证码错误", 'short', 'bottom').then(function(){
+                $cordovaToast.show("验证码错误", 'short', 'bottom').then(function(){
 
-                    });
+                });
                 // }, false);
 
                 $scope.valicode = "";

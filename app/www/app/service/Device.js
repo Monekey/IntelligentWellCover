@@ -693,7 +693,6 @@ angular.module("app")
                             angular.forEach(deviceList, function (device) {
                                 device.openInfoWin = openInfoWin;
                                 (function(device){AMap.event.addListener(device.marker, 'click', function() {
-                                    console.log(11)
                                     openInfoWin(device);
                                 });})(device)
                             });
@@ -726,14 +725,15 @@ angular.module("app")
         GetLastDate: function () {
             return timestrap;
         },
-        GetDistanceInfo: function (deviceNo) {
-            return deviceDistanceMap[deviceNo]
-        },
-        SetDistanceInfo: function (deviceNo, distance) {
-            if(angular.isDefined(distance)){
-                deviceDistanceMap[deviceNo] = distance
-            }
-        },
+        /**
+         * 数据下发
+         * @param deviceNo
+         * @param sensorId
+         * @param value
+         * @param tracker
+         * @returns {Promise}
+         * @constructor
+         */
         ControlSwitchValue: function (deviceNo, sensorId, value, tracker) {
             var defer = $q.defer();
             var param = {
@@ -754,6 +754,7 @@ angular.module("app")
             return defer.promise;
         },
         /**
+         * 没用上
          * 根据设备序列号查询传感器最新一条监控数据
          * @param deviceNo
          * @returns {promise|{then, catch, finally}|*}

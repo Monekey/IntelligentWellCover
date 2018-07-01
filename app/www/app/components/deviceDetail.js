@@ -97,14 +97,15 @@ angular.module('app')
                 return;
             }
             var defered = $q.defer();
-            var p1 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);
+            // var p1 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGKONGZHI], 1);
+
             // var p2 = DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode);
-            p1.then(function(){
-                DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
-                    .then(function(data){
-                        defered.resolve(data)
-                    })
-            });
+            // p1.then(function(){
+            DeviceService.ControlSwitchValue($scope.Device.deviceNo, $scope.OperateIds[OperateSensorNameList.YUANCHENGSHURU], $scope.ControlCode)
+                .then(function(data){
+                    defered.resolve(data)
+                })
+            // });
             return defered.promise;
             // return $q.all([p1, p2])
         };
@@ -380,14 +381,16 @@ angular.module('app')
                     onholdStratHandler(scope, {$event: event}).then(function() {
                         onholdHandler(scope, {$event: event});
                         $interval.cancel($rootScope.intervalObj);
-                        $rootScope.intervalObj = $interval(function(){
-                            if(element.hasClass("activated")){
-                                element.triggerHandler("onhold");
-                                onholdHandler(scope, {$event: event});
-                            }else{
-                                $interval.cancel($rootScope.intervalObj);
-                            }
-                        }, INTERVAL_TIME);
+                        if(!config.SingleMode){
+                            $rootScope.intervalObj = $interval(function(){
+                                if(element.hasClass("activated")){
+                                    element.triggerHandler("onhold");
+                                    onholdHandler(scope, {$event: event});
+                                }else{
+                                    $interval.cancel($rootScope.intervalObj);
+                                }
+                            }, INTERVAL_TIME);
+                        }
                     });
                 }, ON_HOLD_TIMEMS);
             },

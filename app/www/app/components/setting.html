@@ -4,6 +4,12 @@
             最大可操作距离：
             <input ng-model="config.VisibleMeter" ng-blur="checkEmpty('VisibleMeter')">米
         </div>
+        <div>
+            <ion-toggle ng-model="config.SingleMode" ng-change="changeSingleMode()"
+                        toggle-class="toggle-calm">
+                禁用连续上升/下降操作模式
+            </ion-toggle>
+        </div>
         <div ng-show="showMoreSetting">
             <div>
                 <ion-toggle ng-model="ShowVConsole" ng-change="changeVConsole()"
